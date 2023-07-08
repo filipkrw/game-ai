@@ -5,13 +5,13 @@
 // #include "SteeringBehaviors.h"
 
 class GameWorld;
-// class SteeringBehaviors;
+class SteeringBehaviors;
 
 class Vehicle : public MovingEntity
 {
 private:
     GameWorld *m_pWorld;
-    // SteeringBehaviors *m_pSteering;
+    SteeringBehaviors *m_pSteering;
 
 public:
     Vehicle(

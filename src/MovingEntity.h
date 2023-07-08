@@ -30,7 +30,7 @@ public:
 
     MovingEntity(int id) : BaseGameEntity(id) {}
 
-    double Velocity() { return m_vVelocity.Length(); }
+    Vector2 Velocity() { return m_vVelocity; }
     double MaxSpeed() { return m_dMaxSpeed; }
 };
 

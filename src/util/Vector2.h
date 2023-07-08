@@ -27,4 +27,19 @@ public:
     {
         return Vector2(vector.vector.x / vector.Length(), vector.vector.y / vector.Length());
     }
+
+    Vector2 operator+(Vector2 vector)
+    {
+        return Vector2(this->vector.x + vector.vector.x, this->vector.y + vector.vector.y);
+    }
+
+    Vector2 operator-(Vector2 vector)
+    {
+        return Vector2(this->vector.x - vector.vector.x, this->vector.y - vector.vector.y);
+    }
+
+    Vector2 operator*(double scalar)
+    {
+        return Vector2(this->vector.x * scalar, this->vector.y * scalar);
+    }
 };
