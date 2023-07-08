@@ -20,6 +20,9 @@ public:
         vector.y = y;
     }
 
+    double X() { return vector.x; }
+    double Y() { return vector.y; }
+
     double Length() { return sqrt(vector.x * vector.x + vector.y * vector.y); }
     Vector2 Perp() { return Vector2(-vector.y, vector.x); }
 
@@ -27,6 +30,16 @@ public:
     {
         return Vector2(vector.vector.x / vector.Length(), vector.vector.y / vector.Length());
     }
+
+    void Truncate(double max)
+    {
+        if (this->Length() > max)
+        {
+            this->vector = Vector2::Normalize(*this).vector * max;
+        }
+    }
+
+    double LengthSq() { return vector.x * vector.x + vector.y * vector.y; }
 
     Vector2 operator+(Vector2 vector)
     {
@@ -41,5 +54,10 @@ public:
     Vector2 operator*(double scalar)
     {
         return Vector2(this->vector.x * scalar, this->vector.y * scalar);
+    }
+
+    Vector2 operator/(double scalar)
+    {
+        return Vector2(this->vector.x / scalar, this->vector.y / scalar);
     }
 };

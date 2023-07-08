@@ -5,6 +5,7 @@
 GameWorld::GameWorld()
 {
     m_Vehicles = std::vector<Vehicle *>();
+
     Vehicle v = Vehicle(
         this,
         Vector2(0, 0),

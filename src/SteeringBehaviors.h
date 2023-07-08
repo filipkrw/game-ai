@@ -12,6 +12,8 @@ private:
     Vehicle *m_pVehicle;
 
 public:
+    SteeringBehaviors(Vehicle *vehicle);
+
     Vector2 Seek(Vector2 targetPos);
 };
 

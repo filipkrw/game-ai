@@ -2,7 +2,7 @@
 #define VEHICLE_H
 
 #include "MovingEntity.h"
-// #include "SteeringBehaviors.h"
+#include "SteeringBehaviors.h"
 
 class GameWorld;
 class SteeringBehaviors;
@@ -26,6 +26,8 @@ public:
         Vector2 scale);
 
     void Update(double dt);
+
+    void Render();
 };
 
 #endif // VEHICLE_H

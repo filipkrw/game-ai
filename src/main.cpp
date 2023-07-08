@@ -2,6 +2,7 @@
 #include <iostream>
 #include "GameWorld.h"
 #include "Vehicle.h"
+#include "Renderer.h"
 
 int main()
 {
