@@ -23,8 +23,15 @@ public:
         SetID(id);
     }
 
-    // virtual ~BaseGameEntity() {}
+    BaseGameEntity(int id, Vector2 position, Vector2 scale, double rotation)
+    {
+        SetID(id);
+        m_vPosition = position;
+        m_vScale = scale;
+        m_dRotation = rotation;
+    }
 
+    // virtual ~BaseGameEntity() {}
     // virtual void Update() = 0;
 
     int ID() const { return m_ID; }

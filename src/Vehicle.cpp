@@ -10,22 +10,9 @@ Vehicle::Vehicle(
     double maxSpeed,
     double maxForce,
     double maxTurnRate,
-    Vector2 scale) : MovingEntity(0)
+    Vector2 scale) : MovingEntity(0, position, rotation, velocity, mass, maxSpeed, maxForce, maxTurnRate, scale)
 {
     m_pWorld = world;
-    m_vPosition = position;
-    m_dRotation = rotation;
-    m_vVelocity = velocity;
-    m_dMass = mass;
-    m_dMaxSpeed = maxSpeed;
-    m_dMaxForce = maxForce;
-    m_dMaxTurnRate = maxTurnRate;
-    m_vScale = scale;
-}
-
-Vehicle::Vehicle() : MovingEntity(0)
-{
-    std::cout << "Vehicle::Vehicle()" << std::endl;
 }
 
 void Vehicle::Update(double dt)

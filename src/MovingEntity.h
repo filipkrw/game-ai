@@ -1,7 +1,6 @@
 #ifndef MOVINGENTITY_H
 #define MOVINGENTITY_H
 
-#include <SFML/System/Vector2.hpp>
 #include "BaseGameEntity.h"
 #include "util/Vector2.h"
 
@@ -18,6 +17,17 @@ protected:
     double m_dMaxTurnRate;
 
 public:
+    MovingEntity(int id, Vector2 position, double rotation, Vector2 velocity, double mass, double maxSpeed, double maxForce, double maxTurnRate, Vector2 scale) : BaseGameEntity(id, position, scale, rotation)
+    {
+        m_vVelocity = velocity;
+        m_dMass = mass;
+        m_dMaxSpeed = maxSpeed;
+        m_dMaxForce = maxForce;
+        m_dMaxTurnRate = maxTurnRate;
+        m_vHeading = Vector2::Normalize(m_vVelocity);
+        m_vSide = m_vHeading.Perp();
+    }
+
     MovingEntity(int id) : BaseGameEntity(id) {}
 
     double Velocity() { return m_vVelocity.Length(); }

@@ -5,7 +5,7 @@
 // #include "SteeringBehaviors.h"
 
 class GameWorld;
-class SteeringBehaviors;
+// class SteeringBehaviors;
 
 class Vehicle : MovingEntity
 {
@@ -14,8 +14,6 @@ private:
     // SteeringBehaviors *m_pSteering;
 
 public:
-    Vehicle();
-
     Vehicle(
         GameWorld *world,
         Vector2 position,

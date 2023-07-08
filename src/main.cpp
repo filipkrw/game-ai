@@ -1,10 +1,22 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "GameWorld.h"
+#include "Vehicle.h"
 
 int main()
 {
     GameWorld gameWorld = GameWorld();
+
+    Vehicle vehicle = Vehicle(
+        &gameWorld,
+        Vector2(0, 0),
+        0,
+        Vector2(0, 0),
+        1,
+        1,
+        1,
+        1,
+        Vector2(1, 1));
 
     sf::RenderWindow window(sf::VideoMode(900, 600), "Game AI");
     window.setFramerateLimit(144);

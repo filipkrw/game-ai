@@ -20,10 +20,8 @@ public:
         vector.y = y;
     }
 
-    double Length()
-    {
-        return sqrt(vector.x * vector.x + vector.y * vector.y);
-    }
+    double Length() { return sqrt(vector.x * vector.x + vector.y * vector.y); }
+    Vector2 Perp() { return Vector2(-vector.y, vector.x); }
 
     static Vector2 Normalize(Vector2 vector)
     {
