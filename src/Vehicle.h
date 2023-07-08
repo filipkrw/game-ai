@@ -7,7 +7,7 @@
 class GameWorld;
 // class SteeringBehaviors;
 
-class Vehicle : MovingEntity
+class Vehicle : public MovingEntity
 {
 private:
     GameWorld *m_pWorld;
