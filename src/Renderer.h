@@ -1,24 +1,25 @@
-#ifndef RENDERER_H
-#define RENDERER_H
+#include <SFML/Graphics.hpp>
+#include <mutex>
 
 class Renderer
 {
-protected:
+private:
+    static Renderer *instance;
+    static std::mutex mtx;
+    sf::RenderWindow *window;
+
+    // Private constructor so that no objects can be created
     Renderer();
 
 public:
-    static Renderer *renderer_;
-    static Renderer *GetInstance();
-
+    // Delete copy constructor and assignment operator
     Renderer(Renderer &other) = delete;
     void operator=(const Renderer &) = delete;
 
-    Renderer *GetPointerAddress()
-    {
-        return renderer_;
-    }
+    static Renderer *getInstance();
+
+    sf::RenderWindow *GetWindow();
+
+    // Remember to delete the window when done
+    ~Renderer();
 };
-
-// Renderer *Renderer::renderer_ = nullptr;
-
-#endif // RENDERER_H
