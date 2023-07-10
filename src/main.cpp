@@ -2,14 +2,13 @@
 #include <iostream>
 #include "GameWorld.h"
 #include "Vehicle.h"
-#include "Renderer.h"
+#include "renderer/Renderer.h"
 
 int main()
 {
     GameWorld gameWorld = GameWorld();
 
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
-
     sf::Clock deltaClock;
 
     sf::RectangleShape rectangle(sf::Vector2f(120, 50));

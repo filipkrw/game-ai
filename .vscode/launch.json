@@ -14,7 +14,7 @@
       "name": "C++ - Debug Multi File",
       "type": "lldb",
       "request": "launch",
-      "program": "${fileDirname}/out/a.out",
+      "program": "${workspaceFolder}/out/a.out",
       "args": [],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "C++ - Debug Multi File"

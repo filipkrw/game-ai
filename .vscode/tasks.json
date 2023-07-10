@@ -30,7 +30,7 @@
     {
       "type": "shell",
       "label": "C++ - Debug Multi File",
-      "command": "/usr/bin/clang++ -std=c++17 -stdlib=libc++ -g -Wall ${fileDirname}/*.cpp -o ${fileDirname}/out/a.out -lsfml-graphics -lsfml-window -lsfml-system",
+      "command": "/usr/bin/clang++ -std=c++17 -stdlib=libc++ -g -Wall ${workspaceFolder}/src/**/*.cpp -o ${workspaceFolder}/out/a.out -lsfml-graphics -lsfml-window -lsfml-system",
       "options": {
         "cwd": "${workspaceFolder}"
       },
