@@ -6,28 +6,32 @@ GameWorld::GameWorld()
 {
     m_Vehicles = std::vector<Vehicle *>();
 
-    Vehicle v = Vehicle(
+    Vehicle *v = new Vehicle(
         this,
-        Vector2(0, 0),
+        Vector2(150, 150),
         0,
         Vector2(0, 0),
         1,
         1,
-        1,
+        100,
         1,
         Vector2(1, 1));
 
-    m_Vehicles.push_back(&v);
+    m_Vehicles.push_back(v);
 }
 
 void GameWorld::Update(double dt)
 {
-    for (int i = 0; i < m_Vehicles.size(); i++)
+    for (Vehicle *v : m_Vehicles)
     {
-        m_Vehicles[i]->Update(dt);
+        v->Update(dt);
     }
 }
 
 void GameWorld::Render()
 {
+    for (Vehicle *v : m_Vehicles)
+    {
+        v->Render();
+    }
 }

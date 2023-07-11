@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Vehicle.h"
+#include "renderer/Renderer.h"
 
 Vehicle::Vehicle(
     GameWorld *world,
@@ -39,4 +40,11 @@ void Vehicle::Update(double dt)
 
 void Vehicle::Render()
 {
+    sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
+
+    sf::CircleShape circle(10.f);
+    circle.setFillColor(sf::Color::Blue);
+    circle.setPosition(m_vPosition.X(), m_vPosition.Y());
+
+    window->draw(circle);
 }

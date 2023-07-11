@@ -29,6 +29,7 @@ public:
     }
 
     MovingEntity(int id) : BaseGameEntity(id) {}
+    virtual void Update(double dt) = 0;
 
     Vector2 Velocity() { return m_vVelocity; }
     double MaxSpeed() { return m_dMaxSpeed; }

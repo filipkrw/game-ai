@@ -16,7 +16,7 @@ int main()
 
     while (window->isOpen())
     {
-        sf::Time dt = deltaClock.restart();
+        double dt = deltaClock.restart().asSeconds();
         sf::Event event;
 
         while (window->pollEvent(event))
@@ -35,10 +35,10 @@ int main()
             }
         }
 
-        gameWorld.Update(dt.asSeconds());
+        gameWorld.Update(dt);
 
         window->clear(sf::Color::Black);
-        window->draw(rectangle);
+        gameWorld.Render();
         window->display();
     }
 

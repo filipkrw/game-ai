@@ -32,7 +32,8 @@ public:
     }
 
     // virtual ~BaseGameEntity() {}
-    // virtual void Update() = 0;
+    virtual void Update(double dt) = 0;
+    // virtual void Render() = 0;
 
     int ID() const { return m_ID; }
     Vector2 Pos() const { return m_vPosition; }
