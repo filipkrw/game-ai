@@ -19,7 +19,7 @@ Vehicle::Vehicle(
 
 void Vehicle::Update(double dt)
 {
-    Vector2 steeringForce = m_pSteering->Seek(Vector2(100, 100));
+    Vector2 steeringForce = m_pSteering->Flee(Vector2(100, 100));
 
     Vector2 acceleration = steeringForce / m_dMass;
 

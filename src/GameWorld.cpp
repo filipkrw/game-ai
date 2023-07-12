@@ -8,7 +8,7 @@ GameWorld::GameWorld()
 
     Vehicle *v = new Vehicle(
         this,
-        Vector2(450, 350),
+        Vector2(150, 150),
         0,
         Vector2(0, 0),
         1,

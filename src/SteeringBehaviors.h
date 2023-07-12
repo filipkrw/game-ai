@@ -15,6 +15,7 @@ public:
     SteeringBehaviors(Vehicle *vehicle);
 
     Vector2 Seek(Vector2 targetPos);
+    Vector2 Flee(Vector2 targetPos);
 };
 
 #endif // STEERING_BEHAVIORS_H

@@ -60,4 +60,12 @@ public:
     {
         return Vector2(this->vector.x / scalar, this->vector.y / scalar);
     }
+
+    double DistanceSq(Vector2 vector)
+    {
+        double ySeparation = vector.vector.y - this->vector.y;
+        double xSeparation = vector.vector.x - this->vector.x;
+
+        return ySeparation * ySeparation + xSeparation * xSeparation;
+    }
 };
