@@ -31,11 +31,11 @@ void Vehicle::Update(double dt)
 
     m_vPosition = m_vPosition + m_vVelocity * dt;
 
-    // if (m_vVelocity.LengthSq() > 0.00000001)
-    // {
-    //     m_vHeading = Vector2::Normalize(m_vVelocity);
-    //     m_vSide = m_vHeading.Perp();
-    // }
+    if (m_vVelocity.LengthSq() > 0.00000001)
+    {
+        m_vHeading = Vector2::Normalize(m_vVelocity);
+        m_vSide = m_vHeading.Perp();
+    }
 }
 
 void Vehicle::Render()
