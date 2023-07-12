@@ -45,7 +45,7 @@
       "type": "shell",
       "label": "Create out directory",
       "command": "mkdir",
-      "args": ["-p", "${fileDirname}/out"]
+      "args": ["-p", "${workspaceFolder}/out"]
     }
   ]
 }
