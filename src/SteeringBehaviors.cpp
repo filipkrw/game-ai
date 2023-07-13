@@ -1,7 +1,8 @@
+#include <cmath>
+
 #include "SteeringBehaviors.h"
 #include "util/Vector2.h"
 #include "Vehicle.h"
-#include <cmath>
 
 SteeringBehaviors::SteeringBehaviors(Vehicle *vehicle)
 {
@@ -26,4 +27,22 @@ Vector2 SteeringBehaviors::Flee(Vector2 targetPos, double panicDistance)
     }
     Vector2 desiredVelocity = Vector2::Normalize(m_pVehicle->Pos() - targetPos) * m_pVehicle->MaxSpeed();
     return desiredVelocity - m_pVehicle->Velocity();
+}
+
+Vector2 SteeringBehaviors::Arrive(Vector2 targetPos, Deceleration deceleration)
+{
+    Vector2 toTarget = targetPos - m_pVehicle->Pos();
+    double distance = toTarget.Length();
+
+    if (distance > 0)
+    {
+        const double decelerationTweaker = 0.1;
+        double speed = distance / ((double)deceleration * decelerationTweaker);
+        speed = std::min(speed, m_pVehicle->MaxSpeed());
+
+        Vector2 desiredVelocity = toTarget * speed / distance;
+        return desiredVelocity - m_pVehicle->Velocity() / 2;
+    }
+
+    return Vector2(0, 0);
 }
