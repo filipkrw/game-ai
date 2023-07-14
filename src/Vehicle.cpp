@@ -19,15 +19,13 @@ Vehicle::Vehicle(
 
 void Vehicle::Update(double dt)
 {
-    Vector2 steeringForce = m_pSteering->Arrive(Vector2(100, 100), Deceleration::fast);
+    Vector2 steeringForce = m_pSteering->Arrive(Vector2(600, 200), Deceleration::slow);
 
     Vector2 acceleration = steeringForce / m_dMass;
 
     m_vVelocity = m_vVelocity + acceleration * dt;
 
     m_vVelocity.Truncate(m_dMaxSpeed);
-
-    std::cout << m_vPosition.X() << m_vPosition.Y() << std::endl;
 
     m_vPosition = m_vPosition + m_vVelocity * dt;
 

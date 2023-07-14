@@ -6,18 +6,30 @@ GameWorld::GameWorld()
 {
     m_Vehicles = std::vector<Vehicle *>();
 
-    Vehicle *v = new Vehicle(
+    Vehicle *vehicle1 = new Vehicle(
         this,
         Vector2(150, 150),
         0,
-        Vector2(0, 0),
-        1,
-        300,
-        0,
-        1,
+        Vector2(-1050, 0), // velocity
+        0.1,               // mass
+        200,               // maxSpeed
+        1000,              // maxForce
+        10,
         Vector2(1, 1));
 
-    m_Vehicles.push_back(v);
+    // Vehicle *vehicle2 = new Vehicle(
+    //     this,
+    //     Vector2(600, 550),
+    //     0,
+    //     Vector2(0, 0),
+    //     1,
+    //     50,
+    //     0,
+    //     1,
+    //     Vector2(1, 1));
+
+    m_Vehicles.push_back(vehicle1);
+    // m_Vehicles.push_back(vehicle2);
 }
 
 void GameWorld::Update(double dt)

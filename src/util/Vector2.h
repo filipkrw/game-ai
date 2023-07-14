@@ -68,4 +68,9 @@ public:
 
         return ySeparation * ySeparation + xSeparation * xSeparation;
     }
+
+    double Dot(Vector2 vector)
+    {
+        return this->vector.x * vector.vector.x + this->vector.y * vector.vector.y;
+    }
 };

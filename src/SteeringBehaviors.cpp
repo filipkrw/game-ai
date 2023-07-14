@@ -36,13 +36,32 @@ Vector2 SteeringBehaviors::Arrive(Vector2 targetPos, Deceleration deceleration)
 
     if (distance > 0)
     {
-        const double decelerationTweaker = 0.1;
+        const double decelerationTweaker = 0.3;
         double speed = distance / ((double)deceleration * decelerationTweaker);
         speed = std::min(speed, m_pVehicle->MaxSpeed());
 
         Vector2 desiredVelocity = toTarget * speed / distance;
-        return desiredVelocity - m_pVehicle->Velocity() / 2;
+        return desiredVelocity - m_pVehicle->Velocity();
     }
 
     return Vector2(0, 0);
+}
+
+Vector2 SteeringBehaviors::Pursuit(Vehicle *evader)
+{
+    Vector2 toEvader = evader->Pos() - m_pVehicle->Pos();
+    double relativeHeading = m_pVehicle->Heading().Dot(evader->Heading());
+
+    if (toEvader.Dot(m_pVehicle->Heading()) > 0 && relativeHeading < -0.95)
+    {
+        return Seek(evader->Pos());
+    }
+
+    double lookAheadTime = toEvader.Length() / (m_pVehicle->MaxSpeed() + evader->Speed());
+    return Seek(evader->Pos() + evader->Velocity() * lookAheadTime);
+}
+
+Vector2 SteeringBehaviors::Calculate()
+{
+    return Vector2();
 }
