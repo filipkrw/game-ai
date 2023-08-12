@@ -4,8 +4,38 @@
 #include "util/Vector2.h"
 #include "Vehicle.h"
 #include "GameWorld.h"
+#include "params/Params.h"
 
-SteeringBehaviors::SteeringBehaviors(Vehicle *vehicle)
+SteeringBehaviors::SteeringBehaviors(Vehicle *vehicle) : m_pVehicle(vehicle),
+                                                         m_iFlags(0),
+                                                         //  m_dDBoxLength(Prm.MinDetectionBoxLength),
+                                                         m_dWeightSeparation(Params::SeparationWeight),
+                                                         m_dWeightCohesion(Params::CohesionWeight),
+                                                         m_dWeightAlignment(Params::AlignmentWeight),
+                                                         m_dWeightObstacleAvoidance(Params::ObstacleAvoidanceWeight),
+                                                         m_dWeightWander(Params::WanderWeight),
+                                                         m_dWeightWallAvoidance(Params::WallAvoidanceWeight),
+                                                         //  m_dViewDistance(Params::ViewDistance),
+                                                         //  m_dWallDetectionFeelerLength(Params::WallDetectionFeelerLength),
+                                                         //  m_Feelers(3),
+                                                         //  m_Deceleration(normal),
+                                                         m_pTargetAgent1(NULL),
+                                                         m_pTargetAgent2(NULL),
+                                                         //  m_dWanderDistance(WanderDist),
+                                                         //  m_dWanderJitter(WanderJitterPerSec),
+                                                         //  m_dWanderRadius(WanderRad),
+                                                         //  m_dWaypointSeekDistSq(WaypointSeekDist * WaypointSeekDist),
+                                                         m_dWeightSeek(Params::SeekWeight),
+                                                         m_dWeightFlee(Params::FleeWeight),
+                                                         m_dWeightArrive(Params::ArriveWeight),
+                                                         m_dWeightPursuit(Params::PursuitWeight),
+                                                         m_dWeightOffsetPursuit(Params::OffsetPursuitWeight),
+                                                         m_dWeightInterpose(Params::InterposeWeight),
+                                                         m_dWeightHide(Params::HideWeight),
+                                                         m_dWeightEvade(Params::EvadeWeight),
+                                                         m_dWeightFollowPath(Params::FollowPathWeight)
+//  m_bCellSpaceOn(false),
+//  m_SummingMethod(prioritized)
 {
     m_pVehicle = vehicle;
 }
@@ -70,18 +100,18 @@ Vector2 SteeringBehaviors::Calculate()
     if (On(flee))
     {
         double m_dPanicDistance = 200.0f;
-        m_vSteeringForce += Flee(crosshairPosition, m_dPanicDistance); // * m_dWeightFlee;
+        m_vSteeringForce += Flee(crosshairPosition, m_dPanicDistance) * m_dWeightFlee;
     }
 
     if (On(arrive))
     {
         Deceleration m_Deceleration = normal;
-        m_vSteeringForce += Arrive(crosshairPosition, m_Deceleration); //* m_dWeightArrive;
+        m_vSteeringForce += Arrive(crosshairPosition, m_Deceleration) * m_dWeightArrive;
     }
 
     if (On(pursuit))
     {
-        m_vSteeringForce += Pursuit(m_pTargetAgent1); // * m_dWeightPursuit;
+        m_vSteeringForce += Pursuit(m_pTargetAgent1) * m_dWeightPursuit;
     }
 
     return m_vSteeringForce;
