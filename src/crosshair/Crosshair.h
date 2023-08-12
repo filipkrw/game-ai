@@ -18,24 +18,24 @@ public:
         this->m_vPosition = position;
     }
 
-    void Update(double dt)
+    void SetPosition(Vector2 position)
     {
-        m_vPosition = Vector2(
-            sf::Mouse::getPosition(*Renderer::getInstance()->GetWindow()).x,
-            sf::Mouse::getPosition(*Renderer::getInstance()->GetWindow()).y);
+        this->m_vPosition = position;
     }
+
+    void Update(double dt) {}
 
     void Render()
     {
         sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
 
         sf::RectangleShape horizontal(sf::Vector2f(20, 2));
-        horizontal.setPosition(m_vPosition.X() - 10, m_vPosition.Y());
+        horizontal.setPosition(m_vPosition.X() - 9, m_vPosition.Y());
         horizontal.setFillColor(sf::Color::White);
         window->draw(horizontal);
 
         sf::RectangleShape vertical(sf::Vector2f(2, 20));
-        vertical.setPosition(m_vPosition.X(), m_vPosition.Y() - 10);
+        vertical.setPosition(m_vPosition.X(), m_vPosition.Y() - 9);
         vertical.setFillColor(sf::Color::White);
         window->draw(vertical);
     }

@@ -7,8 +7,6 @@
 
 int main()
 {
-    Crosshair crosshair = Crosshair();
-
     GameWorld gameWorld = GameWorld();
 
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
@@ -22,8 +20,14 @@ int main()
         double dt = deltaClock.restart().asSeconds();
         sf::Event event;
 
+        int eventCount = 0;
+        sf::Event events[sf::Event::EventType::Count];
+
         while (window->pollEvent(event))
         {
+            events[eventCount] = event;
+            eventCount++;
+
             if (event.type == sf::Event::KeyPressed)
             {
                 if (event.key.code == sf::Keyboard::Escape)
@@ -38,12 +42,16 @@ int main()
             }
         }
 
-        gameWorld.Update(dt);
-        crosshair.Update(dt);
+        gameWorld.Update(dt, events);
+
+        // clear events array
+        for (int i = 0; i < 1; i++)
+        {
+            events[i] = sf::Event();
+        }
 
         window->clear(sf::Color::Black);
         gameWorld.Render();
-        crosshair.Render();
 
         window->display();
     }

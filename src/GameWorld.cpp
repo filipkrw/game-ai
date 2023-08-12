@@ -4,6 +4,8 @@
 
 GameWorld::GameWorld()
 {
+    m_pCrosshair = new Crosshair();
+
     m_Vehicles = std::vector<Vehicle *>();
 
     Vehicle *vehicle1 = new Vehicle(
@@ -20,7 +22,7 @@ GameWorld::GameWorld()
     vehicle1->Steering()->ArriveOn();
     m_Vehicles.push_back(vehicle1);
 
-        // Vehicle *vehicle2 = new Vehicle(
+    // Vehicle *vehicle2 = new Vehicle(
     //     this,
     //     Vector2(600, 550),
     //     0,
@@ -35,8 +37,25 @@ GameWorld::GameWorld()
     // m_Vehicles.push_back(vehicle2);
 }
 
-void GameWorld::Update(double dt)
+void GameWorld::Update(double dt, sf::Event events[])
 {
+    sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
+    sf::Event event;
+
+    for (int i = 0; i < 1; i++)
+    {
+        event = events[i];
+
+        if (event.type == sf::Event::MouseButtonPressed)
+        {
+            Vector2 mousePosition = Vector2(
+                sf::Mouse::getPosition(*window).x,
+                sf::Mouse::getPosition(*window).y);
+
+            m_pCrosshair->SetPosition(mousePosition);
+        }
+    }
+
     for (Vehicle *v : m_Vehicles)
     {
         v->Update(dt);
@@ -45,6 +64,8 @@ void GameWorld::Update(double dt)
 
 void GameWorld::Render()
 {
+    m_pCrosshair->Render();
+
     for (Vehicle *v : m_Vehicles)
     {
         v->Render();

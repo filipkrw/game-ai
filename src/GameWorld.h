@@ -4,6 +4,7 @@
 #include "Vehicle.h"
 #include "BaseGameEntity.h"
 #include "util/Vector2.h"
+#include "crosshair/Crosshair.h"
 #include <vector>
 
 class GameWorld
@@ -35,6 +36,8 @@ private:
     // keeps track of the average FPS
     double m_dAvFrameTime;
 
+    Crosshair *m_pCrosshair;
+
     // flags to turn aids and obstacles etc on/off
     bool m_bShowWalls;
     bool m_bShowObstacles;
@@ -54,7 +57,7 @@ private:
 
 public:
     GameWorld();
-    void Update(double dt);
+    void Update(double dt, sf::Event events[]);
     void Render();
 };
 
