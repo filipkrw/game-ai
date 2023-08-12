@@ -1,3 +1,6 @@
+#ifndef RENDERER_H
+#define RENDERER_H
+
 #include <SFML/Graphics.hpp>
 #include <mutex>
 
@@ -23,3 +26,5 @@ public:
     // Remember to delete the window when done
     ~Renderer();
 };
+
+#endif // RENDERER_H

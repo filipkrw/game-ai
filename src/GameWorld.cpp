@@ -20,7 +20,7 @@ GameWorld::GameWorld()
     vehicle1->Steering()->ArriveOn();
     m_Vehicles.push_back(vehicle1);
 
-    // Vehicle *vehicle2 = new Vehicle(
+        // Vehicle *vehicle2 = new Vehicle(
     //     this,
     //     Vector2(600, 550),
     //     0,

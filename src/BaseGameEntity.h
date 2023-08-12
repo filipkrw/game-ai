@@ -9,12 +9,14 @@ class BaseGameEntity
 private:
     int m_ID;
     static int m_iNextValidID;
-    void SetID(int val) { m_ID = val; }
+    void SetID(int val);
 
 protected:
     Vector2 m_vPosition;
     Vector2 m_vScale;
     double m_dRotation;
+
+    static int GetNextValidID() { return m_iNextValidID; }
 
 public:
     BaseGameEntity(int id)
@@ -33,7 +35,7 @@ public:
 
     // virtual ~BaseGameEntity() {}
     virtual void Update(double dt) = 0;
-    // virtual void Render() = 0;
+    virtual void Render() = 0;
 
     int ID() const { return m_ID; }
     Vector2 Pos() const { return m_vPosition; }

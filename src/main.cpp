@@ -3,9 +3,12 @@
 #include "GameWorld.h"
 #include "Vehicle.h"
 #include "renderer/Renderer.h"
+#include "crosshair/Crosshair.h"
 
 int main()
 {
+    Crosshair crosshair = Crosshair();
+
     GameWorld gameWorld = GameWorld();
 
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
@@ -36,9 +39,12 @@ int main()
         }
 
         gameWorld.Update(dt);
+        crosshair.Update(dt);
 
         window->clear(sf::Color::Black);
         gameWorld.Render();
+        crosshair.Render();
+
         window->display();
     }
 
