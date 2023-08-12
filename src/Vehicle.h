@@ -28,6 +28,8 @@ public:
     void Update(double dt);
 
     void Render();
+
+    SteeringBehaviors *const Steering() const { return m_pSteering; }
 };
 
 #endif // VEHICLE_H

@@ -19,7 +19,8 @@ Vehicle::Vehicle(
 
 void Vehicle::Update(double dt)
 {
-    Vector2 steeringForce = m_pSteering->Arrive(Vector2(600, 200), Deceleration::slow);
+    // Vector2 steeringForce = m_pSteering->Arrive(Vector2(600, 200), Deceleration::normal);
+    Vector2 steeringForce = m_pSteering->Calculate();
 
     Vector2 acceleration = steeringForce / m_dMass;
 

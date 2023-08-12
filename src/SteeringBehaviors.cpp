@@ -63,5 +63,25 @@ Vector2 SteeringBehaviors::Pursuit(Vehicle *evader)
 
 Vector2 SteeringBehaviors::Calculate()
 {
-    return Vector2();
+    m_vSteeringForce.Zero();
+    Vector2 Crosshair = Vector2(600, 450);
+
+    if (On(flee))
+    {
+        double m_dPanicDistance = 100.0f;
+        m_vSteeringForce += Flee(Crosshair, m_dPanicDistance) * m_dWeightFlee;
+    }
+
+    if (On(arrive))
+    {
+        Deceleration m_Deceleration = normal;
+        m_vSteeringForce += Arrive(Crosshair, m_Deceleration); //* m_dWeightArrive;
+    }
+
+    if (On(pursuit))
+    {
+        m_vSteeringForce += Pursuit(m_pTargetAgent1) * m_dWeightPursuit;
+    }
+
+    return m_vSteeringForce;
 }

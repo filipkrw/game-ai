@@ -14,6 +14,14 @@ enum Deceleration
 
 class SteeringBehaviors
 {
+public:
+    enum summing_method
+    {
+        weighted_average,
+        prioritized,
+        dithered
+    };
+
 private:
     enum behavior_type
     {
@@ -38,10 +46,28 @@ private:
 
     Vehicle *m_pVehicle;
 
+    Vector2 m_vSteeringForce;
+
     int m_iFlags = 0;
     Vehicle *m_pTargetAgent1 = nullptr;
     Vehicle *m_pTargetAgent2 = nullptr;
     Vector2 m_vOffset = Vector2(0, 0);
+
+    double m_dWeightSeparation;
+    double m_dWeightCohesion;
+    double m_dWeightAlignment;
+    double m_dWeightWander;
+    double m_dWeightObstacleAvoidance;
+    double m_dWeightWallAvoidance;
+    double m_dWeightSeek;
+    double m_dWeightFlee;
+    double m_dWeightArrive;
+    double m_dWeightPursuit;
+    double m_dWeightOffsetPursuit;
+    double m_dWeightInterpose;
+    double m_dWeightHide;
+    double m_dWeightEvade;
+    double m_dWeightFollowPath;
 
 public:
     SteeringBehaviors(Vehicle *vehicle);

@@ -61,6 +61,13 @@ public:
         return Vector2(this->vector.x / scalar, this->vector.y / scalar);
     }
 
+    Vector2 operator+=(Vector2 vector)
+    {
+        this->vector.x += vector.vector.x;
+        this->vector.y += vector.vector.y;
+        return *this;
+    }
+
     double DistanceSq(Vector2 vector)
     {
         double ySeparation = vector.vector.y - this->vector.y;
@@ -72,5 +79,11 @@ public:
     double Dot(Vector2 vector)
     {
         return this->vector.x * vector.vector.x + this->vector.y * vector.vector.y;
+    }
+
+    void Zero()
+    {
+        vector.x = 0;
+        vector.y = 0;
     }
 };
