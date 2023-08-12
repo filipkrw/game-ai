@@ -69,10 +69,14 @@ private:
     double m_dWeightEvade;
     double m_dWeightFollowPath;
 
+    summing_method m_SummingMethod;
+
 public:
     SteeringBehaviors(Vehicle *vehicle);
 
     Vector2 Calculate();
+
+    Vector2 CalculateWeightedSum();
 
     bool On(behavior_type bt)
     {

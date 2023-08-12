@@ -35,6 +35,7 @@ public:
     double MaxSpeed() { return m_dMaxSpeed; }
     Vector2 Heading() { return m_vHeading; }
     double Speed() { return m_vVelocity.Length(); }
+    double MaxForce() { return m_dMaxForce; }
 };
 
 #endif // MOVINGENTITY_H

@@ -33,9 +33,9 @@ SteeringBehaviors::SteeringBehaviors(Vehicle *vehicle) : m_pVehicle(vehicle),
                                                          m_dWeightInterpose(Params::InterposeWeight),
                                                          m_dWeightHide(Params::HideWeight),
                                                          m_dWeightEvade(Params::EvadeWeight),
-                                                         m_dWeightFollowPath(Params::FollowPathWeight)
-//  m_bCellSpaceOn(false),
-//  m_SummingMethod(prioritized)
+                                                         m_dWeightFollowPath(Params::FollowPathWeight),
+                                                         //  m_bCellSpaceOn(false),
+                                                         m_SummingMethod(weighted_average)
 {
     m_pVehicle = vehicle;
 }
@@ -92,9 +92,8 @@ Vector2 SteeringBehaviors::Pursuit(Vehicle *evader)
     return Seek(evader->Pos() + evader->Velocity() * lookAheadTime);
 }
 
-Vector2 SteeringBehaviors::Calculate()
+Vector2 SteeringBehaviors::CalculateWeightedSum()
 {
-    m_vSteeringForce.Zero();
     Vector2 crosshairPosition = m_pVehicle->World()->GetCrosshair()->Pos();
 
     if (On(flee))
@@ -112,6 +111,30 @@ Vector2 SteeringBehaviors::Calculate()
     if (On(pursuit))
     {
         m_vSteeringForce += Pursuit(m_pTargetAgent1) * m_dWeightPursuit;
+    }
+
+    m_vSteeringForce.Truncate(m_pVehicle->MaxForce());
+
+    return m_vSteeringForce;
+}
+
+Vector2 SteeringBehaviors::Calculate()
+{
+    m_vSteeringForce.Zero();
+
+    switch (m_SummingMethod)
+    {
+    case weighted_average:
+        m_vSteeringForce = CalculateWeightedSum();
+        break;
+
+    case prioritized:
+        // m_vSteeringForce = CalculatePrioritized();
+        break;
+
+    case dithered:
+        // m_vSteeringForce = CalculateDithered();
+        break;
     }
 
     return m_vSteeringForce;
