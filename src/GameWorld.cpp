@@ -23,19 +23,19 @@ GameWorld::GameWorld()
     vehicle1->Steering()->ArriveOn();
     m_Vehicles.push_back(vehicle1);
 
-    // Vehicle *vehicle2 = new Vehicle(
-    //     this,
-    //     Vector2(600, 550),
-    //     0,
-    //     Vector2(0, 0), // velocity
-    //     0.1,           // mass
-    //     200,           // maxSpeed
-    //     1000,          // maxForce
-    //     1,
-    //     Vector2(1, 1));
+    Vehicle *vehicle2 = new Vehicle(
+        this,
+        Vector2(600, 550),
+        0,
+        Vector2(0, 0), // velocity
+        0.1,           // mass
+        125,           // maxSpeed
+        1000,          // maxForce
+        1,
+        Vector2(1, 1));
 
-    // vehicle2->Steering()->ArriveOn();
-    // m_Vehicles.push_back(vehicle2);
+    vehicle2->Steering()->PursuitOn(vehicle1);
+    m_Vehicles.push_back(vehicle2);
 }
 
 void GameWorld::Update(double dt, sf::Event events[])

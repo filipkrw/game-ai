@@ -69,8 +69,8 @@ Vector2 SteeringBehaviors::Calculate()
 
     if (On(flee))
     {
-        double m_dPanicDistance = 100.0f;
-        m_vSteeringForce += Flee(crosshairPosition, m_dPanicDistance) * m_dWeightFlee;
+        double m_dPanicDistance = 200.0f;
+        m_vSteeringForce += Flee(crosshairPosition, m_dPanicDistance); // * m_dWeightFlee;
     }
 
     if (On(arrive))
@@ -81,7 +81,7 @@ Vector2 SteeringBehaviors::Calculate()
 
     if (On(pursuit))
     {
-        m_vSteeringForce += Pursuit(m_pTargetAgent1) * m_dWeightPursuit;
+        m_vSteeringForce += Pursuit(m_pTargetAgent1); // * m_dWeightPursuit;
     }
 
     return m_vSteeringForce;
