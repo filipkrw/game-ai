@@ -29,15 +29,22 @@ public:
     {
         sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
 
-        sf::RectangleShape horizontal(sf::Vector2f(20, 2));
-        horizontal.setPosition(m_vPosition.X() - 9, m_vPosition.Y());
+        sf::RectangleShape horizontal(sf::Vector2f(20, 1));
+        horizontal.setPosition(m_vPosition.X() - 10.f, m_vPosition.Y());
         horizontal.setFillColor(sf::Color::White);
         window->draw(horizontal);
 
-        sf::RectangleShape vertical(sf::Vector2f(2, 20));
-        vertical.setPosition(m_vPosition.X(), m_vPosition.Y() - 9);
+        sf::RectangleShape vertical(sf::Vector2f(1, 20));
+        vertical.setPosition(m_vPosition.X(), m_vPosition.Y() - 10.f);
         vertical.setFillColor(sf::Color::White);
         window->draw(vertical);
+
+        // sf::CircleShape circle(10.f);
+        // circle.setFillColor(sf::Color::Transparent);
+        // circle.setOutlineThickness(2.f);
+        // circle.setOutlineColor(sf::Color::White);
+        // circle.setPosition(m_vPosition.X() - 10.f, m_vPosition.Y() - 10.f);
+        // window->draw(circle);
     }
 };
 

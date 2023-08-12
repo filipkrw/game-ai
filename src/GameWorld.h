@@ -51,14 +51,16 @@ private:
     bool m_bViewKeys;
     bool m_bShowCellSpaceInfo;
 
-    void CreateObstacles();
+    // void CreateObstacles();
 
-    void CreateWalls();
+    // void CreateWalls();
 
 public:
     GameWorld();
     void Update(double dt, sf::Event events[]);
     void Render();
+
+    Crosshair *const GetCrosshair() const { return m_pCrosshair; }
 };
 
 #endif // GAMEWORLD_H

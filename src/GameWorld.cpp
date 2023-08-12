@@ -1,6 +1,7 @@
 #include <iostream>
 #include "GameWorld.h"
 #include "Vehicle.h"
+#include "crosshair/Crosshair.h"
 
 GameWorld::GameWorld()
 {

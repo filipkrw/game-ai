@@ -30,6 +30,8 @@ public:
     void Render();
 
     SteeringBehaviors *const Steering() const { return m_pSteering; }
+
+    GameWorld *const World() const { return m_pWorld; }
 };
 
 #endif // VEHICLE_H

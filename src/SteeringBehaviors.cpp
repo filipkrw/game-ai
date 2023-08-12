@@ -3,6 +3,7 @@
 #include "SteeringBehaviors.h"
 #include "util/Vector2.h"
 #include "Vehicle.h"
+#include "GameWorld.h"
 
 SteeringBehaviors::SteeringBehaviors(Vehicle *vehicle)
 {
@@ -64,18 +65,18 @@ Vector2 SteeringBehaviors::Pursuit(Vehicle *evader)
 Vector2 SteeringBehaviors::Calculate()
 {
     m_vSteeringForce.Zero();
-    Vector2 Crosshair = Vector2(600, 450);
+    Vector2 crosshairPosition = m_pVehicle->World()->GetCrosshair()->Pos();
 
     if (On(flee))
     {
         double m_dPanicDistance = 100.0f;
-        m_vSteeringForce += Flee(Crosshair, m_dPanicDistance) * m_dWeightFlee;
+        m_vSteeringForce += Flee(crosshairPosition, m_dPanicDistance) * m_dWeightFlee;
     }
 
     if (On(arrive))
     {
         Deceleration m_Deceleration = normal;
-        m_vSteeringForce += Arrive(Crosshair, m_Deceleration); //* m_dWeightArrive;
+        m_vSteeringForce += Arrive(crosshairPosition, m_Deceleration); //* m_dWeightArrive;
     }
 
     if (On(pursuit))

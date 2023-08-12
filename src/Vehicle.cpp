@@ -43,7 +43,7 @@ void Vehicle::Render()
 
     sf::CircleShape circle(10.f);
     circle.setFillColor(sf::Color::Blue);
-    circle.setPosition(m_vPosition.X(), m_vPosition.Y());
+    circle.setPosition(m_vPosition.X() - 10.f, m_vPosition.Y() - 10.f);
 
     window->draw(circle);
 }
