@@ -41,9 +41,14 @@ void Vehicle::Render()
 {
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
 
-    sf::CircleShape circle(10.f);
-    circle.setFillColor(sf::Color::Blue);
-    circle.setPosition(m_vPosition.X() - 10.f, m_vPosition.Y() - 10.f);
+    sf::ConvexShape triangle;
+    triangle.setPointCount(3);
+    triangle.setPoint(0, sf::Vector2f(m_vPosition.X() + m_vHeading.X() * 20, m_vPosition.Y() + m_vHeading.Y() * 20));
+    triangle.setPoint(1, sf::Vector2f(m_vPosition.X() + m_vSide.X() * 10, m_vPosition.Y() + m_vSide.Y() * 10));
+    triangle.setPoint(2, sf::Vector2f(m_vPosition.X() - m_vSide.X() * 10, m_vPosition.Y() - m_vSide.Y() * 10));
+    triangle.setFillColor(sf::Color::Transparent);
+    triangle.setOutlineColor(sf::Color::Blue);
+    triangle.setOutlineThickness(1.f);
 
-    window->draw(circle);
+    window->draw(triangle);
 }
