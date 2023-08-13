@@ -11,7 +11,7 @@ GameWorld::GameWorld()
 
     Vehicle *vehicle1 = new Vehicle(
         this,
-        Vector2(150, 150),
+        Vector2(650, 450),
         0,
         Vector2(-1050, 0), // velocity
         0.1,               // mass
@@ -25,16 +25,16 @@ GameWorld::GameWorld()
 
     Vehicle *vehicle2 = new Vehicle(
         this,
-        Vector2(600, 550),
+        Vector2(300, 300),
         0,
         Vector2(0, 0), // velocity
         0.1,           // mass
-        125,           // maxSpeed
+        50,            // maxSpeed
         1000,          // maxForce
-        1,
+        10,
         Vector2(1, 1));
 
-    vehicle2->Steering()->PursuitOn(vehicle1);
+    vehicle2->Steering()->EvadeOn(vehicle1);
     m_Vehicles.push_back(vehicle2);
 }
 

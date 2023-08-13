@@ -13,8 +13,8 @@ SteeringBehaviors::SteeringBehaviors(Vehicle *vehicle) : m_pVehicle(vehicle),
                                                          m_dWeightSeparation(Params::SeparationWeight),
                                                          m_dWeightCohesion(Params::CohesionWeight),
                                                          m_dWeightAlignment(Params::AlignmentWeight),
-                                                         m_dWeightObstacleAvoidance(Params::ObstacleAvoidanceWeight),
                                                          m_dWeightWander(Params::WanderWeight),
+                                                         m_dWeightObstacleAvoidance(Params::ObstacleAvoidanceWeight),
                                                          m_dWeightWallAvoidance(Params::WallAvoidanceWeight),
                                                          //  m_dViewDistance(Params::ViewDistance),
                                                          //  m_dWallDetectionFeelerLength(Params::WallDetectionFeelerLength),
@@ -91,11 +91,20 @@ Vector2 SteeringBehaviors::Pursuit(Vehicle *evader)
 
     double lookAheadTime = toEvader.Length() / (m_pVehicle->MaxSpeed() + evader->Speed());
 
-    lookAheadTime += TurnAroundTime(m_pVehicle, evader->Pos());
+    // lookAheadTime += TurnAroundTime(m_pVehicle, evader->Pos());
 
     m_vPursuitTarget = evader->Pos() + evader->Velocity() * lookAheadTime;
 
     return Seek(evader->Pos() + evader->Velocity() * lookAheadTime);
+}
+
+Vector2 SteeringBehaviors::Evade(Vehicle *pursuer)
+{
+    Vector2 toPursuer = pursuer->Pos() - m_pVehicle->Pos();
+
+    double lookAheadTime = toPursuer.Length() / (m_pVehicle->MaxSpeed() + pursuer->Speed());
+
+    return Flee(pursuer->Pos() + pursuer->Velocity() * lookAheadTime, 0.f);
 }
 
 Vector2 SteeringBehaviors::CalculateWeightedSum()
@@ -117,6 +126,12 @@ Vector2 SteeringBehaviors::CalculateWeightedSum()
     if (On(pursuit))
     {
         m_vSteeringForce += Pursuit(m_pTargetAgent1) * m_dWeightPursuit;
+    }
+
+    if (On(evade))
+    {
+        m_vSteeringForce += Evade(m_pTargetAgent1);
+        *m_dWeightEvade;
     }
 
     m_vSteeringForce.Truncate(m_pVehicle->MaxForce());
@@ -148,7 +163,7 @@ Vector2 SteeringBehaviors::Calculate()
 
 // Page 95 in the book; not sure how it's supposed to work, it doesn't even
 // take vehicle turning rate into account
-double SteeringBehaviors::TurnAroundTime(Vehicle *vehicle, Vector2 targetPosition)
+double TurnAroundTime(Vehicle *vehicle, Vector2 targetPosition)
 {
     Vector2 toTarget = Vector2::Normalize(targetPosition - vehicle->Pos());
 

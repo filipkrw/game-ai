@@ -87,6 +87,7 @@ public:
     Vector2 Flee(Vector2 targetPos, double panicDistance = -1.0f);
     Vector2 Arrive(Vector2 targetPos, Deceleration deceleration = normal);
     Vector2 Pursuit(Vehicle *evader);
+    Vector2 Evade(Vehicle *pursuer);
 
     void FleeOn() { m_iFlags |= flee; }
     void SeekOn() { m_iFlags |= seek; }
@@ -231,8 +232,6 @@ public:
     bool isInterposeOn() { return On(interpose); }
     bool isHideOn() { return On(hide); }
     bool isOffsetPursuitOn() { return On(offset_pursuit); }
-
-    double TurnAroundTime(Vehicle *vehicle, Vector2 targetPosition);
 
     // Test properites
     Vector2 m_vPursuitTarget;
