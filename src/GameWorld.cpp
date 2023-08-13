@@ -38,23 +38,11 @@ GameWorld::GameWorld()
     m_Vehicles.push_back(vehicle2);
 }
 
-void GameWorld::Update(double dt, sf::Event events[])
+void GameWorld::Update(double dt)
 {
-    sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
-    sf::Event event;
-
-    for (int i = 0; i < 1; i++)
+    if (inputManager.GetLeftMouse().isPressed)
     {
-        event = events[i];
-
-        if (event.type == sf::Event::MouseButtonPressed)
-        {
-            Vector2 mousePosition = Vector2(
-                sf::Mouse::getPosition(*window).x,
-                sf::Mouse::getPosition(*window).y);
-
-            m_pCrosshair->SetPosition(mousePosition);
-        }
+        m_pCrosshair->SetPosition(inputManager.GetLeftMouse().position);
     }
 
     for (Vehicle *v : m_Vehicles)

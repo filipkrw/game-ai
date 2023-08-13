@@ -1,4 +1,5 @@
-#pragma once
+#ifndef VECTOR2_H
+#define VECTOR2_H
 
 #include <SFML/System/Vector2.hpp>
 #include <cmath>
@@ -91,3 +92,5 @@ public:
         vector.y = 0;
     }
 };
+
+#endif // VECTOR2_H

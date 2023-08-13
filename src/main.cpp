@@ -20,13 +20,9 @@ int main()
         double dt = deltaClock.restart().asSeconds();
         sf::Event event;
 
-        int eventCount = 0;
-        sf::Event events[sf::Event::EventType::Count];
-
         while (window->pollEvent(event))
         {
-            events[eventCount] = event;
-            eventCount++;
+            gameWorld.inputManager.ProcessEvent(event);
 
             if (event.type == sf::Event::KeyPressed)
             {
@@ -42,13 +38,7 @@ int main()
             }
         }
 
-        gameWorld.Update(dt, events);
-
-        // clear events array
-        for (int i = 0; i < 1; i++)
-        {
-            events[i] = sf::Event();
-        }
+        gameWorld.Update(dt);
 
         window->clear(sf::Color::Black);
         gameWorld.Render();

@@ -6,6 +6,7 @@
 #include "util/Vector2.h"
 #include "crosshair/Crosshair.h"
 #include <vector>
+#include "input/InputManager.h"
 
 class GameWorld
 {
@@ -57,8 +58,10 @@ private:
 
 public:
     GameWorld();
-    void Update(double dt, sf::Event events[]);
+    void Update(double dt);
     void Render();
+
+    InputManager inputManager = InputManager();
 
     Crosshair *const GetCrosshair() const { return m_pCrosshair; }
 };
