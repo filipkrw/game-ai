@@ -5,6 +5,7 @@
 #include "Vehicle.h"
 #include "GameWorld.h"
 #include "params/Params.h"
+#include "renderer/Renderer.h"
 
 SteeringBehaviors::SteeringBehaviors(Vehicle *vehicle) : m_pVehicle(vehicle),
                                                          m_iFlags(0),
@@ -89,6 +90,11 @@ Vector2 SteeringBehaviors::Pursuit(Vehicle *evader)
     }
 
     double lookAheadTime = toEvader.Length() / (m_pVehicle->MaxSpeed() + evader->Speed());
+
+    lookAheadTime += TurnAroundTime(m_pVehicle, evader->Pos());
+
+    m_vPursuitTarget = evader->Pos() + evader->Velocity() * lookAheadTime;
+
     return Seek(evader->Pos() + evader->Velocity() * lookAheadTime);
 }
 
@@ -138,4 +144,17 @@ Vector2 SteeringBehaviors::Calculate()
     }
 
     return m_vSteeringForce;
+}
+
+// Page 95 in the book; not sure how it's supposed to work, it doesn't even
+// take vehicle turning rate into account
+double SteeringBehaviors::TurnAroundTime(Vehicle *vehicle, Vector2 targetPosition)
+{
+    Vector2 toTarget = Vector2::Normalize(targetPosition - vehicle->Pos());
+
+    double dot = vehicle->Heading().Dot(toTarget);
+
+    const double coefficient = 0.3;
+
+    return (dot - 1.0) * -coefficient;
 }

@@ -28,6 +28,10 @@ public:
 
     static Vector2 Normalize(Vector2 vector)
     {
+        if (vector.Length() == 0)
+        {
+            return Vector2(0, 0);
+        }
         return Vector2(vector.vector.x / vector.Length(), vector.vector.y / vector.Length());
     }
 

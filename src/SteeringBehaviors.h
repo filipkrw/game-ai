@@ -231,6 +231,11 @@ public:
     bool isInterposeOn() { return On(interpose); }
     bool isHideOn() { return On(hide); }
     bool isOffsetPursuitOn() { return On(offset_pursuit); }
+
+    double TurnAroundTime(Vehicle *vehicle, Vector2 targetPosition);
+
+    // Test properites
+    Vector2 m_vPursuitTarget;
 };
 
 #endif // STEERING_BEHAVIORS_H

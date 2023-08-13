@@ -51,4 +51,12 @@ void Vehicle::Render()
     triangle.setOutlineThickness(1.f);
 
     window->draw(triangle);
+
+    if (m_pSteering->isPursuitOn())
+    {
+        sf::RectangleShape rectangle(sf::Vector2f(8, 8));
+        rectangle.setFillColor(sf::Color::Green);
+        rectangle.setPosition(m_pSteering->m_vPursuitTarget.X() - 4, m_pSteering->m_vPursuitTarget.Y() - 4);
+        window->draw(rectangle);
+    }
 }
