@@ -2,6 +2,7 @@
 #define STEERING_BEHAVIORS_H
 
 #include "util/Vector2.h"
+#include "util/Util.h"
 
 class Vehicle;
 
@@ -21,6 +22,10 @@ public:
         prioritized,
         dithered
     };
+
+    double m_dWanderDistance;
+    double m_dWanderRadius;
+    Vector2 m_vWanderTarget = Util::RandomPointOnCircle(m_dWanderRadius);
 
 private:
     enum behavior_type
@@ -46,7 +51,7 @@ private:
 
     Vehicle *m_pVehicle;
 
-    Vector2 m_vSteeringForce;
+    Vector2 m_vSteeringForce = Vector2(0, 0);
 
     int m_iFlags = 0;
     Vehicle *m_pTargetAgent1 = nullptr;
@@ -68,6 +73,14 @@ private:
     double m_dWeightHide;
     double m_dWeightEvade;
     double m_dWeightFollowPath;
+    double m_dWanderJitter;
+
+    // stuff for the wander behavior
+    //   double theta = RandFloat() * TwoPi;
+
+    //   // create a vector to a target position on the wander circle
+    //   m_vWanderTarget = Vector2D(m_dWanderRadius * cos(theta),
+    //                              m_dWanderRadius * sin(theta));
 
     summing_method m_SummingMethod;
 
@@ -88,6 +101,7 @@ public:
     Vector2 Arrive(Vector2 targetPos, Deceleration deceleration = normal);
     Vector2 Pursuit(Vehicle *evader);
     Vector2 Evade(Vehicle *pursuer);
+    Vector2 Wander();
 
     void FleeOn() { m_iFlags |= flee; }
     void SeekOn() { m_iFlags |= seek; }

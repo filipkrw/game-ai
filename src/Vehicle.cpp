@@ -21,6 +21,11 @@ void Vehicle::Update(double dt)
 {
     Vector2 steeringForce = m_pSteering->Calculate();
 
+    if (steeringForce.Length() == 0)
+    {
+        return;
+    }
+
     Vector2 acceleration = steeringForce / m_dMass;
 
     m_vVelocity = m_vVelocity + acceleration * dt;
@@ -58,4 +63,34 @@ void Vehicle::Render()
         rectangle.setPosition(m_pSteering->m_vPursuitTarget.X() - 4, m_pSteering->m_vPursuitTarget.Y() - 4);
         window->draw(rectangle);
     }
+
+    // if (m_pSteering->isWanderOn())
+    // {
+    //     sf::CircleShape circle(m_pSteering->m_dWanderRadius);
+    //     circle.setFillColor(sf::Color::Transparent);
+    //     circle.setOutlineColor(sf::Color::Red);
+    //     circle.setOutlineThickness(1.f);
+
+    //     // darw circle in front of vehicle
+    //     circle.setPosition(
+    //         m_vPosition.X() + m_vHeading.X() * m_pSteering->m_dWanderDistance - m_pSteering->m_dWanderRadius,
+    //         m_vPosition.Y() + m_vHeading.Y() * m_pSteering->m_dWanderDistance - m_pSteering->m_dWanderRadius);
+
+    //     window->draw(circle);
+
+    //     sf::RectangleShape rectangle(sf::Vector2f(8, 8));
+    //     rectangle.setFillColor(sf::Color::Green);
+
+    //     Vector2 targetLocal = m_pSteering->m_vWanderTarget + Vector2(m_pSteering->m_dWanderDistance, 0);
+
+    //     Vector2 targetWorld = Util::PointToWorldSpace(
+    //         targetLocal,
+    //         m_vHeading,
+    //         m_vSide,
+    //         m_vPosition);
+
+    //     rectangle.setPosition(targetWorld.X() - 4, targetWorld.Y() - 4);
+
+    //     window->draw(rectangle);
+    // }
 }

@@ -22,9 +22,9 @@ SteeringBehaviors::SteeringBehaviors(Vehicle *vehicle) : m_pVehicle(vehicle),
                                                          //  m_Deceleration(normal),
                                                          m_pTargetAgent1(NULL),
                                                          m_pTargetAgent2(NULL),
-                                                         //  m_dWanderDistance(WanderDist),
-                                                         //  m_dWanderJitter(WanderJitterPerSec),
-                                                         //  m_dWanderRadius(WanderRad),
+                                                         m_dWanderDistance(Params::WanderDist),
+                                                         m_dWanderJitter(Params::WanderJitterPerSec),
+                                                         m_dWanderRadius(Params::WanderRad),
                                                          //  m_dWaypointSeekDistSq(WaypointSeekDist * WaypointSeekDist),
                                                          m_dWeightSeek(Params::SeekWeight),
                                                          m_dWeightFlee(Params::FleeWeight),
@@ -107,6 +107,26 @@ Vector2 SteeringBehaviors::Evade(Vehicle *pursuer)
     return Flee(pursuer->Pos() + pursuer->Velocity() * lookAheadTime, 0.f);
 }
 
+// Page 97
+Vector2 SteeringBehaviors::Wander()
+{
+    m_vWanderTarget += Vector2(
+        Util::RandomBetween(-1, 1) * m_dWanderJitter,
+        Util::RandomBetween(-1, 1) * m_dWanderJitter);
+
+    m_vWanderTarget = Vector2::Normalize(m_vWanderTarget) * m_dWanderRadius;
+
+    Vector2 targetLocal = m_vWanderTarget + Vector2(m_dWanderDistance, 0);
+
+    Vector2 targetWorld = Util::PointToWorldSpace(
+        targetLocal,
+        m_pVehicle->Heading(),
+        m_pVehicle->Side(),
+        m_pVehicle->Pos());
+
+    return targetWorld - m_pVehicle->Pos();
+}
+
 Vector2 SteeringBehaviors::CalculateWeightedSum()
 {
     Vector2 crosshairPosition = m_pVehicle->World()->GetCrosshair()->Pos();
@@ -131,6 +151,11 @@ Vector2 SteeringBehaviors::CalculateWeightedSum()
     if (On(evade))
     {
         m_vSteeringForce += Evade(m_pTargetAgent1) * m_dWeightEvade;
+    }
+
+    if (On(wander))
+    {
+        m_vSteeringForce += Wander() * m_dWeightWander;
     }
 
     m_vSteeringForce.Truncate(m_pVehicle->MaxForce());

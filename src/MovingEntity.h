@@ -34,6 +34,7 @@ public:
     Vector2 Velocity() { return m_vVelocity; }
     double MaxSpeed() { return m_dMaxSpeed; }
     Vector2 Heading() { return m_vHeading; }
+    Vector2 Side() { return m_vSide; }
     double Speed() { return m_vVelocity.Length(); }
     double MaxForce() { return m_dMaxForce; }
 };

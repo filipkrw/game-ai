@@ -68,6 +68,16 @@ public:
     static double prEvade;
     static double prHide;
     static double prArrive;
+
+    // the radius of the constraining circle for the wander behavior
+    static double WanderRad;
+    // distance the wander circle is projected in front of the agent
+    static double WanderDist;
+    // the maximum amount of displacement along the circle each frame
+    static double WanderJitterPerSec;
+
+    // used in path following
+    static double WaypointSeekDist;
 };
 
 #endif

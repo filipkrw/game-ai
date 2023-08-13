@@ -44,6 +44,16 @@ public:
         }
     }
 
+    void Normalize()
+    {
+        if (this->Length() == 0)
+        {
+            return;
+        }
+        this->vector.x /= this->Length();
+        this->vector.y /= this->Length();
+    }
+
     double LengthSq() { return vector.x * vector.x + vector.y * vector.y; }
 
     Vector2 operator+(Vector2 vector)
@@ -70,6 +80,13 @@ public:
     {
         this->vector.x += vector.vector.x;
         this->vector.y += vector.vector.y;
+        return *this;
+    }
+
+    Vector2 operator*=(double scalar)
+    {
+        this->vector.x *= scalar;
+        this->vector.y *= scalar;
         return *this;
     }
 

@@ -27,14 +27,15 @@ GameWorld::GameWorld()
         this,
         Vector2(300, 300),
         0,
-        Vector2(0, 0), // velocity
+        Vector2(3, 0), // velocity
         0.1,           // mass
-        50,            // maxSpeed
+        70,            // maxSpeed
         1000,          // maxForce
         10,
         Vector2(1, 1));
 
     vehicle2->Steering()->EvadeOn(vehicle1);
+    vehicle2->Steering()->WanderOn();
     m_Vehicles.push_back(vehicle2);
 }
 
