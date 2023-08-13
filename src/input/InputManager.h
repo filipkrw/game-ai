@@ -20,6 +20,8 @@ public:
 
     MouseEvent GetLeftMouse() { return leftMouse; }
 
+    void Update();
+
     void ProcessEvent(sf::Event event);
 
     void Clear();

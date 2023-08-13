@@ -40,6 +40,8 @@ GameWorld::GameWorld()
 
 void GameWorld::Update(double dt)
 {
+    inputManager.Update();
+
     if (inputManager.GetLeftMouse().isPressed)
     {
         m_pCrosshair->SetPosition(inputManager.GetLeftMouse().position);

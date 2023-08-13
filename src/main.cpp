@@ -20,6 +20,8 @@ int main()
         double dt = deltaClock.restart().asSeconds();
         sf::Event event;
 
+        gameWorld.inputManager.Clear();
+
         while (window->pollEvent(event))
         {
             gameWorld.inputManager.ProcessEvent(event);
