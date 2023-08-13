@@ -7,6 +7,7 @@
 #include "crosshair/Crosshair.h"
 #include <vector>
 #include "input/InputManager.h"
+#include "entities/Obstacle.h"
 
 class GameWorld
 {
@@ -15,7 +16,7 @@ private:
     std::vector<Vehicle *> m_Vehicles;
 
     // any obstacles
-    std::vector<BaseGameEntity *> m_Obstacles;
+    std::vector<Obstacle *> m_Obstacles;
 
     // container containing any walls in the environment
     // std::vector<Wall2D> m_Walls;
@@ -52,7 +53,7 @@ private:
     bool m_bViewKeys;
     bool m_bShowCellSpaceInfo;
 
-    // void CreateObstacles();
+    void CreateObstacles();
 
     // void CreateWalls();
 

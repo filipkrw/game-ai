@@ -17,7 +17,8 @@ protected:
     double m_dMaxTurnRate;
 
 public:
-    MovingEntity(int id, Vector2 position, double rotation, Vector2 velocity, double mass, double maxSpeed, double maxForce, double maxTurnRate, Vector2 scale) : BaseGameEntity(id, position, scale, rotation)
+    MovingEntity(Vector2 position, double rotation, Vector2 velocity, double mass, double maxSpeed, double maxForce, double maxTurnRate, Vector2 scale)
+        : BaseGameEntity(position, scale, rotation)
     {
         m_vVelocity = velocity;
         m_dMass = mass;
@@ -28,7 +29,7 @@ public:
         m_vSide = m_vHeading.Perp();
     }
 
-    MovingEntity(int id) : BaseGameEntity(id) {}
+    MovingEntity() : BaseGameEntity() {}
     virtual void Update(double dt) = 0;
 
     Vector2 Velocity() { return m_vVelocity; }

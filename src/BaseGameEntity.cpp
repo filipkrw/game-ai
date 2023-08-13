@@ -1,11 +1,14 @@
 #include "BaseGameEntity.h"
+#include <iostream>
 
 int BaseGameEntity::m_iNextValidID = 0;
 
-void BaseGameEntity::SetID(int val)
+void BaseGameEntity::SetID()
 {
-    m_ID = val;
+    m_ID = m_iNextValidID;
     m_iNextValidID = m_ID + 1;
 
-    assert((val + 1 == m_iNextValidID) && "<BaseGameEntity::SetID>: invalid ID");
+    std::cout << "m_ID: " << m_ID << std::endl;
+
+    assert((m_ID + 1 == m_iNextValidID) && "<BaseGameEntity::SetID>: invalid ID");
 }

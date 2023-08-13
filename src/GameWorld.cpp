@@ -37,6 +37,12 @@ GameWorld::GameWorld()
     vehicle2->Steering()->EvadeOn(vehicle1);
     vehicle2->Steering()->WanderOn();
     m_Vehicles.push_back(vehicle2);
+
+    m_Obstacles = std::vector<Obstacle *>();
+
+    Obstacle *obstacle = new Obstacle(Vector2(400, 400), Vector2(25, 25));
+
+    m_Obstacles.push_back(obstacle);
 }
 
 void GameWorld::Update(double dt)
@@ -61,5 +67,10 @@ void GameWorld::Render()
     for (Vehicle *v : m_Vehicles)
     {
         v->Render();
+    }
+
+    for (Obstacle *o : m_Obstacles)
+    {
+        o->Render();
     }
 }

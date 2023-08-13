@@ -8,12 +8,12 @@
 class Crosshair : public BaseGameEntity
 {
 public:
-    Crosshair() : BaseGameEntity(BaseGameEntity::GetNextValidID())
+    Crosshair() : BaseGameEntity()
     {
         m_vPosition = Vector2(100, 100);
     }
 
-    Crosshair(Vector2 position) : BaseGameEntity(BaseGameEntity::GetNextValidID())
+    Crosshair(Vector2 position) : BaseGameEntity()
     {
         this->m_vPosition = position;
     }

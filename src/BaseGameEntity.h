@@ -9,25 +9,22 @@ class BaseGameEntity
 private:
     int m_ID;
     static int m_iNextValidID;
-    void SetID(int val);
+    void SetID();
 
 protected:
     Vector2 m_vPosition;
     Vector2 m_vScale;
     double m_dRotation;
 
-    static int GetNextValidID() { return m_iNextValidID; }
-
 public:
-    BaseGameEntity(int id)
+    BaseGameEntity()
     {
-        std::cout << id << std::endl;
-        SetID(id);
+        SetID();
     }
 
-    BaseGameEntity(int id, Vector2 position, Vector2 scale, double rotation)
+    BaseGameEntity(Vector2 position, Vector2 scale, double rotation)
     {
-        SetID(id);
+        SetID();
         m_vPosition = position;
         m_vScale = scale;
         m_dRotation = rotation;
