@@ -130,8 +130,7 @@ Vector2 SteeringBehaviors::CalculateWeightedSum()
 
     if (On(evade))
     {
-        m_vSteeringForce += Evade(m_pTargetAgent1);
-        *m_dWeightEvade;
+        m_vSteeringForce += Evade(m_pTargetAgent1) * m_dWeightEvade;
     }
 
     m_vSteeringForce.Truncate(m_pVehicle->MaxForce());
