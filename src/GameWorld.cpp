@@ -2,6 +2,7 @@
 #include "GameWorld.h"
 #include "Vehicle.h"
 #include "crosshair/Crosshair.h"
+#include "params/Params.h"
 
 GameWorld::GameWorld()
 {
@@ -10,15 +11,15 @@ GameWorld::GameWorld()
     m_Vehicles = std::vector<Vehicle *>();
 
     Vehicle *vehicle1 = new Vehicle(
-        this,
-        Vector2(650, 450),
-        0,
-        Vector2(-1050, 0), // velocity
-        0.1,               // mass
-        200,               // maxSpeed
-        1000,              // maxForce
-        10,
-        Vector2(1, 1));
+        this,                                                 // world
+        Vector2(650, 450),                                    // position
+        0,                                                    // rotation
+        Vector2(-1050, 0),                                    // velocity
+        Params::VehicleMass,                                  // mass
+        Params::MaxSpeed,                                     // maxSpeed
+        Params::MaxSteeringForce,                             // maxForce
+        Params::MaxTurnRatePerSecond,                         // maxTurnRate
+        Vector2(Params::VehicleScale, Params::VehicleScale)); // scale
 
     vehicle1->Steering()->ArriveOn();
     m_Vehicles.push_back(vehicle1);
@@ -34,7 +35,7 @@ GameWorld::GameWorld()
         10,
         Vector2(1, 1));
 
-    vehicle2->Steering()->EvadeOn(vehicle1);
+    // vehicle2->Steering()->EvadeOn(vehicle1);
     vehicle2->Steering()->WanderOn();
     m_Vehicles.push_back(vehicle2);
 
