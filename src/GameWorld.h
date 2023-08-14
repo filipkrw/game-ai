@@ -13,7 +13,7 @@ class GameWorld
 {
 private:
     // a container of all the moving entities
-    std::vector<Vehicle *> m_Vehicles;
+    // std::vector<Vehicle *> m_Vehicles;
 
     // any obstacles
     std::vector<Obstacle *> m_Obstacles;

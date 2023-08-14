@@ -4,27 +4,24 @@
 #include "Vehicle.h"
 #include "renderer/Renderer.h"
 #include "crosshair/Crosshair.h"
+#include "demos/ArriveDemo.h"
+#include "demos/Demo.h"
 
 int main()
 {
-    GameWorld gameWorld = GameWorld();
-
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
     sf::Clock deltaClock;
 
-    sf::RectangleShape rectangle(sf::Vector2f(120, 50));
-    rectangle.setFillColor(sf::Color::Red);
+    ArriveDemo arriveDemo = ArriveDemo();
 
     while (window->isOpen())
     {
         double dt = deltaClock.restart().asSeconds();
         sf::Event event;
 
-        gameWorld.inputManager.Clear();
-
         while (window->pollEvent(event))
         {
-            gameWorld.inputManager.ProcessEvent(event);
+            arriveDemo.ProcessEvent(event);
 
             if (event.type == sf::Event::KeyPressed)
             {
@@ -40,11 +37,10 @@ int main()
             }
         }
 
-        gameWorld.Update(dt);
+        arriveDemo.Update(dt);
 
         window->clear(sf::Color::Black);
-        gameWorld.Render();
-
+        arriveDemo.Render();
         window->display();
     }
 
