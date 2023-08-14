@@ -41,9 +41,9 @@ SteeringBehaviors::SteeringBehaviors(Vehicle *vehicle) : m_pVehicle(vehicle),
     m_pVehicle = vehicle;
 }
 
-Vector2 SteeringBehaviors::Seek(Vector2 targetPos)
+Vector2 SteeringBehaviors::Seek(Vector2 targetPosition)
 {
-    Vector2 desiredVelocity = Vector2::Normalize(targetPos - m_pVehicle->Position()) * m_pVehicle->MaxSpeed();
+    Vector2 desiredVelocity = Vector2::Normalize(targetPosition - m_pVehicle->Position()) * m_pVehicle->MaxSpeed();
     return desiredVelocity - m_pVehicle->Velocity();
 }
 
@@ -130,6 +130,11 @@ Vector2 SteeringBehaviors::Wander()
 Vector2 SteeringBehaviors::CalculateWeightedSum()
 {
     Vector2 crosshairPosition = m_pVehicle->World()->GetCrosshair()->Position();
+
+    if (On(seek))
+    {
+        m_vSteeringForce += Seek(crosshairPosition); // * m_dWeightSeek;
+    }
 
     if (On(flee))
     {

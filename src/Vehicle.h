@@ -11,7 +11,7 @@ typedef struct VehicleParams
 {
     Vector2 initialPosition = Vector2(450, 300);
     Vector2 scale = Vector2(1, 1);
-    double mass = 0.1;
+    double mass = 2;
     double maxSpeed = 200;
     double maxForce = 500;
     double maxTurnRate = M_PI;

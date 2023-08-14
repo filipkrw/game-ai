@@ -5,6 +5,7 @@
 #include "renderer/Renderer.h"
 #include "crosshair/Crosshair.h"
 #include "demos/ArriveDemo.h"
+#include "demos/SeekDemo.h"
 #include "demos/Demo.h"
 
 int main()
@@ -12,7 +13,8 @@ int main()
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
     sf::Clock deltaClock;
 
-    ArriveDemo arriveDemo = ArriveDemo();
+    // ArriveDemo demo = ArriveDemo();
+    SeekDemo demo = SeekDemo();
 
     while (window->isOpen())
     {
@@ -21,7 +23,7 @@ int main()
 
         while (window->pollEvent(event))
         {
-            arriveDemo.ProcessEvent(event);
+            demo.ProcessEvent(event);
 
             if (event.type == sf::Event::KeyPressed)
             {
@@ -37,12 +39,12 @@ int main()
             }
         }
 
-        arriveDemo.BaseUpdate(dt);
-        arriveDemo.Update(dt);
+        demo.BaseUpdate(dt);
+        demo.Update(dt);
 
         window->clear(sf::Color::Black);
-        arriveDemo.BaseRender();
-        arriveDemo.Render();
+        demo.BaseRender();
+        demo.Render();
         window->display();
     }
 
