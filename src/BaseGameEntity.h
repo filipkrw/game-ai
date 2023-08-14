@@ -15,6 +15,7 @@ protected:
     Vector2 m_vPosition;
     Vector2 m_vScale;
     double m_dRotation;
+    double m_dBoundingRadius;
 
 public:
     BaseGameEntity()
@@ -22,20 +23,21 @@ public:
         SetID();
     }
 
-    BaseGameEntity(Vector2 position, Vector2 scale, double rotation)
+    BaseGameEntity(Vector2 position, Vector2 scale, double rotation, double boundingRadius)
     {
         SetID();
         m_vPosition = position;
         m_vScale = scale;
         m_dRotation = rotation;
+        m_dBoundingRadius = boundingRadius;
     }
 
-    // virtual ~BaseGameEntity() {}
+    virtual ~BaseGameEntity() {}
     virtual void Update(double dt) = 0;
     virtual void Render() = 0;
 
     int ID() const { return m_ID; }
-    Vector2 Pos() const { return m_vPosition; }
+    Vector2 Position() const { return m_vPosition; }
 };
 
 #endif // BASE_GAME_ENTITY_H

@@ -4,7 +4,7 @@
 
 Vehicle::Vehicle(
     GameWorld *world,
-    VehicleParams params) : MovingEntity(params.initialPosition, 0, Vector2(1, 1), params.mass, params.maxSpeed, params.maxForce, params.maxTurnRate, params.scale)
+    VehicleParams params) : MovingEntity(params.initialPosition, 0, Vector2(0, 1), params.mass, params.maxSpeed, params.maxForce, params.maxTurnRate, params.scale, params.boundingRadius)
 {
     m_pWorld = world;
     m_pSteering = new SteeringBehaviors(this);
@@ -13,25 +13,20 @@ Vehicle::Vehicle(
 void Vehicle::Update(double dt)
 {
     Vector2 steeringForce = m_pSteering->Calculate();
-
-    if (steeringForce.Length() == 0)
-    {
-        return;
-    }
-
     Vector2 acceleration = steeringForce / m_dMass;
 
-    m_vVelocity = m_vVelocity + acceleration * dt;
-
+    m_vVelocity += acceleration * dt;
     m_vVelocity.Truncate(m_dMaxSpeed);
 
-    m_vPosition = m_vPosition + m_vVelocity * dt;
+    m_vPosition += m_vVelocity * dt;
 
     if (m_vVelocity.LengthSq() > 0.00000001)
     {
         m_vHeading = Vector2::Normalize(m_vVelocity);
         m_vSide = m_vHeading.Perp();
     }
+
+    m_vPosition = Vector2::WrapAround(m_vPosition, 900, 600);
 }
 
 void Vehicle::Render()

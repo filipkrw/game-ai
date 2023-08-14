@@ -108,6 +108,31 @@ public:
         vector.x = 0;
         vector.y = 0;
     }
+
+    static Vector2 WrapAround(Vector2 pos, int maxX, int maxY)
+    {
+        if (pos.X() > maxX)
+        {
+            pos.vector.x = 0.0;
+        }
+
+        if (pos.X() < 0)
+        {
+            pos.vector.x = (double)maxX;
+        }
+
+        if (pos.Y() < 0)
+        {
+            pos.vector.y = (double)maxY;
+        }
+
+        if (pos.Y() > maxY)
+        {
+            pos.vector.y = 0.0;
+        }
+
+        return pos;
+    }
 };
 
 #endif // VECTOR2_H

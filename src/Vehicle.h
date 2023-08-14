@@ -10,11 +10,12 @@ class SteeringBehaviors;
 typedef struct VehicleParams
 {
     Vector2 initialPosition = Vector2(450, 300);
+    Vector2 scale = Vector2(1, 1);
     double mass = 0.1;
     double maxSpeed = 200;
     double maxForce = 500;
     double maxTurnRate = M_PI;
-    Vector2 scale = Vector2(1, 1);
+    double boundingRadius = 10;
 } VehicleParams;
 
 class Vehicle : public MovingEntity
@@ -24,16 +25,12 @@ private:
     SteeringBehaviors *m_pSteering;
 
 public:
-    Vehicle(
-        GameWorld *world,
-        VehicleParams params);
+    Vehicle(GameWorld *world, VehicleParams params);
 
     void Update(double dt);
-
     void Render();
 
     SteeringBehaviors *const Steering() const { return m_pSteering; }
-
     GameWorld *const World() const { return m_pWorld; }
 };
 

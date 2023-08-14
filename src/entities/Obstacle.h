@@ -7,7 +7,7 @@
 class Obstacle : public BaseGameEntity
 {
 public:
-    Obstacle(Vector2 pos, Vector2 scale) : BaseGameEntity(pos, scale, 0.f) {}
+    Obstacle(Vector2 pos, Vector2 scale) : BaseGameEntity(pos, scale, 0.f, 1.f) {}
     virtual ~Obstacle() {}
 
     void Update(double dt) {}
@@ -16,11 +16,13 @@ public:
     {
         sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
         sf::CircleShape circle(m_vScale.X());
+
         circle.setOrigin(m_vScale.X(), m_vScale.Y());
         circle.setPosition(m_vPosition.X(), m_vPosition.Y());
         circle.setFillColor(sf::Color::Transparent);
         circle.setOutlineThickness(1.f);
         circle.setOutlineColor(sf::Color(86, 86, 86));
+
         window->draw(circle);
     }
 };
