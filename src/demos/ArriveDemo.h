@@ -13,26 +13,15 @@ private:
 public:
     ArriveDemo() : Demo()
     {
-        Vehicle *vehicle1 = new Vehicle(
-            gameWorld,                                            // world
-            Vector2(650, 450),                                    // position
-            0,                                                    // rotation
-            Vector2(10, 0),                                       // velocity
-            Params::VehicleMass,                                  // mass
-            Params::MaxSpeed,                                     // maxSpeed
-            Params::MaxSteeringForce,                             // maxForce
-            Params::MaxTurnRatePerSecond,                         // maxTurnRate
-            Vector2(Params::VehicleScale, Params::VehicleScale)); // scale
+        VehicleParams vehicle2Params;
+        Vehicle *vehicle = new Vehicle(gameWorld, vehicle2Params);
+        vehicle->Steering()->ArriveOn();
 
-        vehicle1->Steering()->ArriveOn();
-
-        vehicles.push_back(vehicle1);
+        vehicles.push_back(vehicle);
     };
 
     void Update(double dt)
     {
-        Demo::Update(dt);
-
         for (auto vehicle : vehicles)
         {
             vehicle->Update(dt);
@@ -41,8 +30,6 @@ public:
 
     void Render()
     {
-        Demo::Render();
-
         for (auto vehicle : vehicles)
         {
             vehicle->Render();

@@ -37,9 +37,11 @@ int main()
             }
         }
 
+        arriveDemo.BaseUpdate(dt);
         arriveDemo.Update(dt);
 
         window->clear(sf::Color::Black);
+        arriveDemo.BaseRender();
         arriveDemo.Render();
         window->display();
     }

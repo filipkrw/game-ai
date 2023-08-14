@@ -4,14 +4,7 @@
 
 Vehicle::Vehicle(
     GameWorld *world,
-    Vector2 position,
-    double rotation,
-    Vector2 velocity,
-    double mass,
-    double maxSpeed,
-    double maxForce,
-    double maxTurnRate,
-    Vector2 scale) : MovingEntity(position, rotation, velocity, mass, maxSpeed, maxForce, maxTurnRate, scale)
+    VehicleParams params) : MovingEntity(params.initialPosition, 0, Vector2(1, 1), params.mass, params.maxSpeed, params.maxForce, params.maxTurnRate, params.scale)
 {
     m_pWorld = world;
     m_pSteering = new SteeringBehaviors(this);

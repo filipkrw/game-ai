@@ -7,6 +7,16 @@
 class GameWorld;
 class SteeringBehaviors;
 
+typedef struct VehicleParams
+{
+    Vector2 initialPosition = Vector2(450, 300);
+    double mass = 0.1;
+    double maxSpeed = 200;
+    double maxForce = 500;
+    double maxTurnRate = M_PI;
+    Vector2 scale = Vector2(1, 1);
+} VehicleParams;
+
 class Vehicle : public MovingEntity
 {
 private:
@@ -16,14 +26,7 @@ private:
 public:
     Vehicle(
         GameWorld *world,
-        Vector2 position,
-        double rotation,
-        Vector2 velocity,
-        double mass,
-        double maxSpeed,
-        double maxForce,
-        double maxTurnRate,
-        Vector2 scale);
+        VehicleParams params);
 
     void Update(double dt);
 
