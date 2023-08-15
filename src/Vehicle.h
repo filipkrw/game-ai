@@ -3,6 +3,7 @@
 
 #include "MovingEntity.h"
 #include "SteeringBehaviors.h"
+#include <SFML/Graphics.hpp>
 
 class GameWorld;
 class SteeringBehaviors;
@@ -12,10 +13,11 @@ typedef struct VehicleParams
     Vector2 initialPosition = Vector2(450, 300);
     Vector2 scale = Vector2(1, 1);
     double mass = 2;
-    double maxSpeed = 10000;
-    double maxForce = 30000;
+    double maxSpeed = 200;
+    double maxForce = 500;
     double maxTurnRate = M_PI;
     double boundingRadius = 10;
+    sf::Color color = sf::Color::Blue;
 } VehicleParams;
 
 class Vehicle : public MovingEntity
@@ -23,6 +25,8 @@ class Vehicle : public MovingEntity
 private:
     GameWorld *m_pWorld;
     SteeringBehaviors *m_pSteering;
+
+    sf::Color m_Color;
 
 public:
     Vehicle(GameWorld *world, VehicleParams params);

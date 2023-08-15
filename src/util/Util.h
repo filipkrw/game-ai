@@ -1,3 +1,6 @@
+#ifndef UTIL_H
+#define UTIL_H
+
 #include "Vector2.h"
 #include <cmath>
 #include <random>
@@ -35,3 +38,5 @@ public:
         return result;
     }
 };
+
+#endif // UTIL_H

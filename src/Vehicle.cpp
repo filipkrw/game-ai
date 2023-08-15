@@ -8,6 +8,7 @@ Vehicle::Vehicle(
 {
     m_pWorld = world;
     m_pSteering = new SteeringBehaviors(this);
+    m_Color = params.color;
 }
 
 void Vehicle::Update(double dt)
@@ -39,7 +40,7 @@ void Vehicle::Render()
     triangle.setPoint(1, sf::Vector2f(m_vPosition.X() + m_vSide.X() * 10, m_vPosition.Y() + m_vSide.Y() * 10));
     triangle.setPoint(2, sf::Vector2f(m_vPosition.X() - m_vSide.X() * 10, m_vPosition.Y() - m_vSide.Y() * 10));
     triangle.setFillColor(sf::Color::Transparent);
-    triangle.setOutlineColor(sf::Color::Blue);
+    triangle.setOutlineColor(m_Color);
     triangle.setOutlineThickness(1.f);
 
     window->draw(triangle);
