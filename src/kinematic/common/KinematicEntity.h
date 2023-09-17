@@ -21,6 +21,7 @@ public:
 
     void Update(KinematicSteeringOutput steering, double dt);
     double NewOrientation(double currentOrientation, Vector2 velocity);
+
     void Render();
     void DrawDebug();
 };

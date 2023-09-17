@@ -115,6 +115,11 @@ public:
         return Vector2(-this->x, -this->y);
     }
 
+    static Vector2 FromAngle(double angle)
+    {
+        return Vector2(-sin(angle), cos(angle));
+    }
+
     double DistanceSq(Vector2 vector)
     {
         double ySeparation = vector.y - this->y;

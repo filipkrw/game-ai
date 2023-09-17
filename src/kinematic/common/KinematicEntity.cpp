@@ -16,14 +16,13 @@ KinematicEntity::KinematicEntity(Vector2 position, double maxSpeed)
 
 void KinematicEntity::Update(KinematicSteeringOutput steering, double dt)
 {
-    // this->velocity.Truncate(maxSpeed);
+    velocity += steering.velocity * dt;
+    position += velocity * dt;
 
-    this->velocity += steering.velocity * dt;
-    position += this->velocity * dt;
-
-    // orientation += rotation * dt;
     // rotation += steering.rotation * dt;
-    // orientation = NewOrientation(orientation, velocity);
+    // orientation += rotation * dt;
+
+    orientation = NewOrientation(orientation, velocity);
 }
 
 double KinematicEntity::NewOrientation(double currentOrientation, Vector2 velocity)
@@ -38,7 +37,7 @@ double KinematicEntity::NewOrientation(double currentOrientation, Vector2 veloci
 
 void KinematicEntity::Render()
 {
-    Vector2 heading = Vector2::Normalize(velocity);
+    Vector2 heading = Vector2::FromAngle(orientation);
     Vector2 side = heading.Perp();
 
     sf::ConvexShape triangle;
