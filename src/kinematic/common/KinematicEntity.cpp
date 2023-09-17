@@ -16,10 +16,9 @@ KinematicEntity::KinematicEntity(Vector2 position, double maxSpeed)
 
 void KinematicEntity::Update(KinematicSteeringOutput steering, double dt)
 {
-    this->velocity.Truncate(maxSpeed);
+    // this->velocity.Truncate(maxSpeed);
 
     this->velocity += steering.velocity * dt;
-
     position += this->velocity * dt;
 
     // orientation += rotation * dt;
@@ -59,8 +58,8 @@ void KinematicEntity::DrawDebug()
 {
 
     sf::Vertex line[] = {
-        sf::Vertex(sf::Vector2f(position.x, position.y), sf::Color::Yellow),
-        sf::Vertex(sf::Vector2f(position.x + velocity.x, position.y + velocity.y), sf::Color::Yellow)};
+        sf::Vertex(sf::Vector2f(position.x, position.y), sf::Color::Red),
+        sf::Vertex(sf::Vector2f(position.x + velocity.x, position.y + velocity.y), sf::Color::Red)};
 
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
     window->draw(line, 2, sf::Lines);

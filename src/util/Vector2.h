@@ -95,6 +95,26 @@ public:
         return *this;
     }
 
+    Vector2 operator/=(double scalar)
+    {
+        this->x /= scalar;
+        this->y /= scalar;
+        return *this;
+    }
+
+    Vector2 operator-=(Vector2 vector)
+    {
+        this->x -= vector.x;
+        this->y -= vector.y;
+        return *this;
+    }
+
+    // reverse velocity
+    Vector2 operator-()
+    {
+        return Vector2(-this->x, -this->y);
+    }
+
     double DistanceSq(Vector2 vector)
     {
         double ySeparation = vector.y - this->y;

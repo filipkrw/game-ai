@@ -8,6 +8,7 @@
 #include "demos/SeekDemo.h"
 #include "demos/Demo.h"
 #include "kinematic/seek/KinematicSeekDemo.h"
+#include "kinematic/arrive/KinematicArriveDemo.h"
 
 int main()
 {
@@ -17,7 +18,8 @@ int main()
     // ArriveDemo demo = ArriveDemo();
     // SeekDemo demo = SeekDemo();
 
-    KinematicSeekDemo demo = KinematicSeekDemo();
+    // KinematicSeekDemo demo = KinematicSeekDemo();
+    KinematicArriveDemo demo = KinematicArriveDemo();
 
     while (window->isOpen())
     {
