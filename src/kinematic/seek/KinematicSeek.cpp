@@ -1,7 +1,7 @@
 #include "KinematicSeek.h"
 #include "../../renderer/Renderer.h"
 
-void KinematicSeek::GetSteering(Vector2 target)
+void KinematicSeek::CalculateSteering(Vector2 target)
 {
     steering.velocity = Vector2::Normalize(target - character->position) * maxSpeed;
 

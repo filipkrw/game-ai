@@ -22,7 +22,7 @@ public:
     void Update(double dt)
     {
         Vector2 crosshairPosition = gameWorld->GetCrosshair()->Position();
-        seek->GetSteering(crosshairPosition);
+        seek->CalculateSteering(crosshairPosition);
         entity->Update(seek->steering, dt);
     }
 

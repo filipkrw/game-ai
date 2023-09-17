@@ -7,14 +7,14 @@
 class KinematicSeek
 {
 public:
-    KinematicSeek(KinematicEntity *character, float maxSpeed = 100.f)
+    KinematicSeek(KinematicEntity *character, float maxSpeed = 1000.f)
         : character(character), maxSpeed(maxSpeed) {}
 
     KinematicEntity *character;
     float maxSpeed;
     KinematicSteeringOutput steering;
 
-    void GetSteering(Vector2 target);
+    void CalculateSteering(Vector2 target);
     void DrawDebug();
 };
 
