@@ -7,6 +7,7 @@
 #include "demos/ArriveDemo.h"
 #include "demos/SeekDemo.h"
 #include "demos/Demo.h"
+#include "kinematic/seek/KinematicSeekDemo.h"
 
 int main()
 {
@@ -14,7 +15,9 @@ int main()
     sf::Clock deltaClock;
 
     // ArriveDemo demo = ArriveDemo();
-    SeekDemo demo = SeekDemo();
+    // SeekDemo demo = SeekDemo();
+
+    KinematicSeekDemo demo = KinematicSeekDemo();
 
     while (window->isOpen())
     {

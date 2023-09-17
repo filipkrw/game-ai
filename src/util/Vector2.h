@@ -6,26 +6,28 @@
 
 class Vector2
 {
-    sf::Vector2<double> vector;
+public:
+    double x;
+    double y;
 
 public:
     Vector2()
     {
-        vector.x = 0;
-        vector.y = 0;
+        x = 0;
+        y = 0;
     }
 
     Vector2(double x, double y)
     {
-        vector.x = x;
-        vector.y = y;
+        this->x = x;
+        this->y = y;
     }
 
-    double X() { return vector.x; }
-    double Y() { return vector.y; }
+    double X() { return x; }
+    double Y() { return y; }
 
-    double Length() { return sqrt(vector.x * vector.x + vector.y * vector.y); }
-    Vector2 Perp() { return Vector2(-vector.y, vector.x); }
+    double Length() { return sqrt(x * x + y * y); }
+    Vector2 Perp() { return Vector2(-y, x); }
 
     static Vector2 Normalize(Vector2 vector)
     {
@@ -33,102 +35,105 @@ public:
         {
             return Vector2(0, 0);
         }
-        return Vector2(vector.vector.x / vector.Length(), vector.vector.y / vector.Length());
+        return Vector2(vector.x / vector.Length(), vector.y / vector.Length());
     }
 
     void Truncate(double max)
     {
-        if (this->Length() > max)
+        if (this->LengthSq() > max * max)
         {
-            this->vector = Vector2::Normalize(*this).vector * max;
+            this->Normalize();
+            this->x *= max;
+            this->y *= max;
         }
     }
 
     void Normalize()
     {
-        if (this->Length() == 0)
+        float length = this->Length();
+        if (length == 0)
         {
             return;
         }
-        this->vector.x /= this->Length();
-        this->vector.y /= this->Length();
+        this->x = this->x / length;
+        this->y = this->y / length;
     }
 
-    double LengthSq() { return vector.x * vector.x + vector.y * vector.y; }
+    double LengthSq() { return x * x + y * y; }
 
     Vector2 operator+(Vector2 vector)
     {
-        return Vector2(this->vector.x + vector.vector.x, this->vector.y + vector.vector.y);
+        return Vector2(this->x + vector.x, this->y + vector.y);
     }
 
     Vector2 operator-(Vector2 vector)
     {
-        return Vector2(this->vector.x - vector.vector.x, this->vector.y - vector.vector.y);
+        return Vector2(this->x - vector.x, this->y - vector.y);
     }
 
     Vector2 operator*(double scalar)
     {
-        return Vector2(this->vector.x * scalar, this->vector.y * scalar);
+        return Vector2(this->x * scalar, this->y * scalar);
     }
 
     Vector2 operator/(double scalar)
     {
-        return Vector2(this->vector.x / scalar, this->vector.y / scalar);
+        return Vector2(this->x / scalar, this->y / scalar);
     }
 
     Vector2 operator+=(Vector2 vector)
     {
-        this->vector.x += vector.vector.x;
-        this->vector.y += vector.vector.y;
+        this->x += vector.x;
+        this->y += vector.y;
         return *this;
     }
 
     Vector2 operator*=(double scalar)
     {
-        this->vector.x *= scalar;
-        this->vector.y *= scalar;
+        this->x *= scalar;
+        this->y *= scalar;
         return *this;
     }
 
     double DistanceSq(Vector2 vector)
     {
-        double ySeparation = vector.vector.y - this->vector.y;
-        double xSeparation = vector.vector.x - this->vector.x;
+        double ySeparation = vector.y - this->y;
+        double xSeparation = vector.x - this->x;
 
         return ySeparation * ySeparation + xSeparation * xSeparation;
     }
 
     double Dot(Vector2 vector)
     {
-        return this->vector.x * vector.vector.x + this->vector.y * vector.vector.y;
+        return this->x * vector.x + this->y * vector.y;
     }
 
     void Zero()
     {
-        vector.x = 0;
-        vector.y = 0;
+        x = 0;
+        y = 0;
     }
 
     static Vector2 WrapAround(Vector2 pos, int maxX, int maxY)
     {
         if (pos.X() > maxX)
         {
-            pos.vector.x = 0.0;
+            pos.x = 0.0;
         }
 
         if (pos.X() < 0)
         {
-            pos.vector.x = (double)maxX;
+            pos.x = (double)maxX;
         }
 
         if (pos.Y() < 0)
         {
-            pos.vector.y = (double)maxY;
+            pos.y = (double)maxY;
         }
 
         if (pos.Y() > maxY)
         {
-            pos.vector.y = 0.0;
+            pos.y = 0.0;
         }
 
         return pos;
