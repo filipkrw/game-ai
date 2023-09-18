@@ -9,13 +9,14 @@
 class KinematicArrive
 {
 public:
-    KinematicArrive(KinematicEntity *character, float maxSpeed = 400.f, float targetRadius = 1.f, float slowRadius = 250.f, float timeToTarget = 0.01f)
-        : character(character), maxSpeed(maxSpeed), targetRadius(targetRadius), slowRadius(slowRadius), timeToTarget(timeToTarget) {}
+    KinematicArrive(KinematicEntity *character, float maxSpeed = 400.f, float maxAcceleration = 1200.f, float targetRadius = 1.f, float slowRadius = 250.f, float timeToTarget = 0.01f)
+        : character(character), maxSpeed(maxSpeed), maxAcceleration(maxAcceleration), targetRadius(targetRadius), slowRadius(slowRadius), timeToTarget(timeToTarget) {}
 
     KinematicEntity *character;
     KinematicSteeringOutput steering;
 
     double maxSpeed;
+    double maxAcceleration;
     double targetRadius;
     double slowRadius;
     double timeToTarget;
