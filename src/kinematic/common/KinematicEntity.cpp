@@ -19,10 +19,15 @@ void KinematicEntity::Update(KinematicSteeringOutput steering, double dt)
     velocity += steering.velocity * dt;
     position += velocity * dt;
 
-    // rotation += steering.rotation * dt;
-    // orientation += rotation * dt;
-
-    orientation = NewOrientation(orientation, velocity);
+    if (lockVelocityToOrientation)
+    {
+        orientation = NewOrientation(orientation, velocity);
+    }
+    else
+    {
+        rotation += steering.rotation * dt;
+        orientation += rotation * dt;
+    }
 }
 
 double KinematicEntity::NewOrientation(double currentOrientation, Vector2 velocity)

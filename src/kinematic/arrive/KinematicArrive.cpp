@@ -1,12 +1,14 @@
 #include "KinematicArrive.h"
+#include <iostream>
 
 void KinematicArrive::CalculateSteering(Vector2 target)
 {
     Vector2 direction = target - character->position;
     double distance = direction.Length();
 
-    if (distance < targetRadius)
+    if (distance < targetRadius && character->velocity.Length() < 0.01)
     {
+        character->velocity = Vector2(0, 0);
         steering.velocity = Vector2(0, 0);
         return;
     }

@@ -16,6 +16,8 @@ public:
 
     double maxSpeed;
 
+    bool lockVelocityToOrientation = false;
+
 public:
     KinematicEntity(Vector2 position, double maxSpeed = 100.0f);
 
