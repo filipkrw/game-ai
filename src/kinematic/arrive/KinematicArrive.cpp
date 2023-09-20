@@ -31,7 +31,14 @@ void KinematicArrive::CalculateSteering(Vector2 target)
     steering.velocity = targetVelocity - character->velocity;
     steering.velocity /= timeToTarget;
 
-    steering.velocity.Truncate(maxAcceleration);
+    if (steering.velocity.Dot(direction) > 0)
+    {
+        steering.velocity.Truncate(maxAcceleration);
+    }
+    else
+    {
+        steering.velocity.Truncate(maxDeceleration);
+    }
 
     steering.rotation = 0;
 }

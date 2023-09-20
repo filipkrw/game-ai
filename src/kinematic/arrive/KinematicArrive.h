@@ -9,17 +9,17 @@
 class KinematicArrive
 {
 public:
-    KinematicArrive(KinematicEntity *character, float maxSpeed = 400.f, float maxAcceleration = 1200.f, float targetRadius = 1.f, float slowRadius = 250.f, float timeToTarget = 0.01f)
-        : character(character), maxSpeed(maxSpeed), maxAcceleration(maxAcceleration), targetRadius(targetRadius), slowRadius(slowRadius), timeToTarget(timeToTarget) {}
+    KinematicArrive(KinematicEntity *character) : character(character){};
 
     KinematicEntity *character;
     KinematicSteeringOutput steering;
 
-    double maxSpeed;
-    double maxAcceleration;
-    double targetRadius;
-    double slowRadius;
-    double timeToTarget;
+    double maxSpeed = 400.f;
+    double maxAcceleration = 300.f;
+    double maxDeceleration = 1500.f;
+    double targetRadius = 1.f;
+    double slowRadius = 200.f;
+    double timeToTarget = 0.05f;
 
     void CalculateSteering(Vector2 target);
     void DrawDebug();

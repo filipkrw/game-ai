@@ -44,8 +44,8 @@ public:
         arriveEntity->Render();
         alignEntity->Render();
 
-        // entity->DrawDebug();
-        // align->DrawDebug();
+        // arriveEntity->DrawDebug();
+        // arrive->DrawDebug();
     };
 };
 
