@@ -21,9 +21,9 @@ int main()
     // SeekDemo demo = SeekDemo();
 
     // KinematicSeekDemo demo = KinematicSeekDemo();
-    // KinematicArriveDemo demo = KinematicArriveDemo();
+    KinematicArriveDemo demo = KinematicArriveDemo();
     // KinematicAlignDemo demo = KinematicAlignDemo();
-    KinematicFaceDemo demo = KinematicFaceDemo();
+    // KinematicFaceDemo demo = KinematicFaceDemo();
 
     while (window->isOpen())
     {
