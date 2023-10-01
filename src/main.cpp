@@ -10,6 +10,7 @@
 #include "kinematic/seek/KinematicSeekDemo.h"
 #include "kinematic/arrive/KinematicArriveDemo.h"
 #include "kinematic/align/KinematicAlignDemo.h"
+#include "kinematic/face/KinematicFaceDemo.h"
 
 int main()
 {
@@ -21,7 +22,8 @@ int main()
 
     // KinematicSeekDemo demo = KinematicSeekDemo();
     // KinematicArriveDemo demo = KinematicArriveDemo();
-    KinematicAlignDemo demo = KinematicAlignDemo();
+    // KinematicAlignDemo demo = KinematicAlignDemo();
+    KinematicFaceDemo demo = KinematicFaceDemo();
 
     while (window->isOpen())
     {

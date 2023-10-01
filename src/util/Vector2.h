@@ -120,6 +120,11 @@ public:
         return Vector2(-sin(angle), cos(angle));
     }
 
+    static double ToAngle(Vector2 vector)
+    {
+        return atan2(-vector.x, vector.y);
+    }
+
     double DistanceSq(Vector2 vector)
     {
         double ySeparation = vector.y - this->y;
