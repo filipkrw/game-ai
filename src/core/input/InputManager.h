@@ -2,7 +2,7 @@
 #define INPUT_MANAGER_H
 
 #include <SFML/Graphics.hpp>
-#include "../util/Vector2.h"
+#include "../../util/Vector2.h"
 
 typedef struct
 {

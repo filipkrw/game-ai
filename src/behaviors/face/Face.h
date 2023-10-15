@@ -1,7 +1,7 @@
 #ifndef _FACE_H
 #define _FACE_H
 
-#include "../../GameWorld.h"
+#include "../../game-world/GameWorld.h"
 #include "../common/Entity.h"
 #include "../../util/Vector2.h"
 #include "../align/Align.h"

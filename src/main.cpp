@@ -1,8 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "GameWorld.h"
+
 #include "core/renderer/Renderer.h"
-#include "crosshair/Crosshair.h"
+#include "game-world/GameWorld.h"
+#include "game-world/crosshair/Crosshair.h"
 #include "behaviors/seek/SeekDemo.h"
 #include "behaviors/arrive/ArriveDemo.h"
 #include "behaviors/align/AlignDemo.h"

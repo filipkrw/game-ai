@@ -1,10 +1,10 @@
 #ifndef GAMEWORLD_H
 #define GAMEWORLD_H
 
-#include "util/Vector2.h"
+#include "../util/Vector2.h"
 #include "crosshair/Crosshair.h"
 #include <vector>
-#include "input/InputManager.h"
+#include "../core/input/InputManager.h"
 
 class GameWorld
 {

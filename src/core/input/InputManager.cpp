@@ -1,5 +1,5 @@
 #include "InputManager.h"
-#include "../core/renderer/Renderer.h"
+#include "../../core/renderer/Renderer.h"
 
 void InputManager::Update()
 {

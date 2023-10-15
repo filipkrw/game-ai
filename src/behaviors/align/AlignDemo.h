@@ -2,7 +2,7 @@
 #define _ALIGN_DEMO_H
 
 #include "../common/Demo.h"
-#include "../../GameWorld.h"
+#include "../../game-world/GameWorld.h"
 #include "../common/Entity.h"
 #include "Align.h"
 #include "../arrive/Arrive.h"

@@ -2,7 +2,7 @@
 #define _FACE_DEMO_H
 
 #include "../common/Demo.h"
-#include "../../GameWorld.h"
+#include "../../game-world/GameWorld.h"
 #include "../common/Entity.h"
 #include "Face.h"
 #include "../arrive/Arrive.h"
