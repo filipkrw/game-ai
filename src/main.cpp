@@ -1,16 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "GameWorld.h"
-#include "Vehicle.h"
 #include "renderer/Renderer.h"
 #include "crosshair/Crosshair.h"
-#include "demos/ArriveDemo.h"
-#include "demos/SeekDemo.h"
-#include "demos/Demo.h"
-#include "kinematic/seek/KinematicSeekDemo.h"
-#include "kinematic/arrive/KinematicArriveDemo.h"
-#include "kinematic/align/KinematicAlignDemo.h"
-#include "kinematic/face/KinematicFaceDemo.h"
+#include "behaviors/seek/SeekDemo.h"
+#include "behaviors/arrive/ArriveDemo.h"
+#include "behaviors/align/AlignDemo.h"
+#include "behaviors/face/FaceDemo.h"
 
 int main()
 {
@@ -20,10 +16,10 @@ int main()
     // ArriveDemo demo = ArriveDemo();
     // SeekDemo demo = SeekDemo();
 
-    // KinematicSeekDemo demo = KinematicSeekDemo();
-    // KinematicArriveDemo demo = KinematicArriveDemo();
-    // KinematicAlignDemo demo = KinematicAlignDemo();
-    KinematicFaceDemo demo = KinematicFaceDemo();
+    // SeekDemo demo = SeekDemo();
+    ArriveDemo demo = ArriveDemo();
+    // AlignDemo demo = AlignDemo();
+    // FaceDemo demo = FaceDemo();
 
     while (window->isOpen())
     {

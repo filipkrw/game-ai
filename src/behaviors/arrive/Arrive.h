@@ -1,18 +1,18 @@
-#ifndef KINEMATIC_ARRIVE_H
-#define KINEMATIC_ARRIVE_H
+#ifndef _ARRIVE_H
+#define _ARRIVE_H
 
 #include "../../demos/Demo.h"
 #include "../../GameWorld.h"
-#include "../common/KinematicEntity.h"
+#include "../common/Entity.h"
 #include "../../util/Vector2.h"
 
-class KinematicArrive
+class Arrive
 {
 public:
-    KinematicArrive(KinematicEntity *character) : character(character){};
+    Arrive(Entity *character) : character(character){};
 
-    KinematicEntity *character;
-    KinematicSteeringOutput steering;
+    Entity *character;
+    SteeringOutput steering;
 
     double maxSpeed = 400.f;
     double maxAcceleration = 300.f;
@@ -25,4 +25,4 @@ public:
     void DrawDebug();
 };
 
-#endif // KINEMATIC_ARRIVE_H
+#endif // _ARRIVE_H

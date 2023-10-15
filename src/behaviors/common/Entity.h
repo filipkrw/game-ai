@@ -1,11 +1,11 @@
-#ifndef KINEMATIC_H
-#define KINEMATIC_H
+#ifndef _H
+#define _H
 
 #include <SFML/Graphics.hpp>
 #include "../../util/Vector2.h"
-#include "KinematicSteeringOutput.h"
+#include "SteeringOutput.h"
 
-class KinematicEntity
+class Entity
 {
 public:
     Vector2 position;
@@ -19,13 +19,13 @@ public:
     bool lockVelocityToOrientation = false;
 
 public:
-    KinematicEntity(Vector2 position, double maxSpeed = 100.0f);
+    Entity(Vector2 position, double maxSpeed = 100.0f);
 
-    void Update(KinematicSteeringOutput steering, double dt);
+    void Update(SteeringOutput steering, double dt);
     double NewOrientation(double currentOrientation, Vector2 velocity);
 
     void Render();
     void DrawDebug();
 };
 
-#endif // KINEMATIC_H
+#endif // _H

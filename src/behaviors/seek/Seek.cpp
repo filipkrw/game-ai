@@ -1,7 +1,7 @@
-#include "KinematicSeek.h"
+#include "Seek.h"
 #include "../../renderer/Renderer.h"
 
-void KinematicSeek::CalculateSteering(Vector2 target)
+void Seek::CalculateSteering(Vector2 target)
 {
     steering.velocity = Vector2::Normalize(target - character->position) * maxSpeed;
 
@@ -10,7 +10,7 @@ void KinematicSeek::CalculateSteering(Vector2 target)
     steering.rotation = 0;
 };
 
-void KinematicSeek::DrawDebug()
+void Seek::DrawDebug()
 {
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
 

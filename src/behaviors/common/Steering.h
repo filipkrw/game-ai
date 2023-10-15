@@ -1,20 +1,20 @@
-#ifndef KINEMATICSTEERING_H
-#define KINEMATICSTEERING_H
+#ifndef STEERING_H
+#define STEERING_H
 
-#include "KinematicEntity.h"
-#include "KinematicSteeringOutput.h"
+#include "Entity.h"
+#include "SteeringOutput.h"
 #include "../../renderer/Renderer.h"
 
-class KinematicSteering
+class Steering
 {
 public:
-    KinematicSteering(KinematicEntity *character) : character(character)
+    Steering(Entity *character) : character(character)
     {
-        steering = KinematicSteeringOutput();
+        steering = SteeringOutput();
     };
 
-    KinematicEntity *character;
-    KinematicSteeringOutput steering;
+    Entity *character;
+    SteeringOutput steering;
 
     void DrawDebug()
     {
@@ -28,4 +28,4 @@ public:
     }
 };
 
-#endif // KINEMATICSTEERING_H
+#endif // STEERING_H

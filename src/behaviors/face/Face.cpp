@@ -1,6 +1,6 @@
-#include "KinematicFace.h"
+#include "Face.h"
 
-void KinematicFace::CalculateSteering(Vector2 position)
+void Face::CalculateSteering(Vector2 position)
 {
     Vector2 direction = position - character->position;
 
@@ -11,5 +11,5 @@ void KinematicFace::CalculateSteering(Vector2 position)
 
     double targetOrientation = Vector2::ToAngle(direction);
 
-    return KinematicAlign::CalculateSteering(targetOrientation);
+    return Align::CalculateSteering(targetOrientation);
 }

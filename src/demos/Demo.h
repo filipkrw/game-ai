@@ -17,6 +17,7 @@ public:
     {
         gameWorld->inputManager.ProcessEvent(event);
     };
+
     void BaseUpdate(double dt) { gameWorld->Update(dt); };
     void BaseRender() { gameWorld->Render(); };
 };

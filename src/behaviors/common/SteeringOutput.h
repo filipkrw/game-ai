@@ -3,7 +3,7 @@
 
 #include "../../util/Vector2.h"
 
-class KinematicSteeringOutput
+class SteeringOutput
 {
 public:
     Vector2 velocity;

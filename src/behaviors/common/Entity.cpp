@@ -1,9 +1,9 @@
-#include "KinematicEntity.h"
-#include "KinematicSteeringOutput.h"
+#include "Entity.h"
+#include "SteeringOutput.h"
 #include "../../util/Vector2.h"
 #include "../../renderer/Renderer.h"
 
-KinematicEntity::KinematicEntity(Vector2 position, double maxSpeed)
+Entity::Entity(Vector2 position, double maxSpeed)
 {
     this->position = position;
     this->orientation = 0;
@@ -14,7 +14,7 @@ KinematicEntity::KinematicEntity(Vector2 position, double maxSpeed)
     this->maxSpeed = maxSpeed;
 }
 
-void KinematicEntity::Update(KinematicSteeringOutput steering, double dt)
+void Entity::Update(SteeringOutput steering, double dt)
 {
     velocity += steering.velocity * dt;
     position += velocity * dt;
@@ -30,7 +30,7 @@ void KinematicEntity::Update(KinematicSteeringOutput steering, double dt)
     }
 }
 
-double KinematicEntity::NewOrientation(double currentOrientation, Vector2 velocity)
+double Entity::NewOrientation(double currentOrientation, Vector2 velocity)
 {
     if (velocity.LengthSq() > 0)
     {
@@ -40,7 +40,7 @@ double KinematicEntity::NewOrientation(double currentOrientation, Vector2 veloci
     return currentOrientation;
 }
 
-void KinematicEntity::Render()
+void Entity::Render()
 {
     Vector2 heading = Vector2::FromAngle(orientation);
     Vector2 side = heading.Perp();
@@ -58,7 +58,7 @@ void KinematicEntity::Render()
     window->draw(triangle);
 }
 
-void KinematicEntity::DrawDebug()
+void Entity::DrawDebug()
 {
 
     sf::Vertex line[] = {

@@ -1,7 +1,7 @@
-#include "KinematicArrive.h"
+#include "Arrive.h"
 #include <iostream>
 
-void KinematicArrive::CalculateSteering(Vector2 target)
+void Arrive::CalculateSteering(Vector2 target)
 {
     Vector2 direction = target - character->position;
     double distance = direction.Length();
@@ -43,7 +43,7 @@ void KinematicArrive::CalculateSteering(Vector2 target)
     steering.rotation = 0;
 }
 
-void KinematicArrive::DrawDebug()
+void Arrive::DrawDebug()
 {
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
 

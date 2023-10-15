@@ -1,4 +1,4 @@
-#include "KinematicAlign.h"
+#include "Align.h"
 
 double mapToRange(double rotation)
 {
@@ -8,7 +8,7 @@ double mapToRange(double rotation)
     return rotation - M_PI;
 }
 
-void KinematicAlign::CalculateSteering(double targetOrientation)
+void Align::CalculateSteering(double targetOrientation)
 {
     double rotation = targetOrientation - character->orientation;
     rotation = mapToRange(rotation);
