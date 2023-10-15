@@ -1,7 +1,7 @@
 #ifndef CROSSHAIR_H
 #define CROSSHAIR_H
 
-#include "../renderer/Renderer.h"
+#include "../core/renderer/Renderer.h"
 #include "../util/Vector2.h"
 
 class Crosshair

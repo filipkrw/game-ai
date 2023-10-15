@@ -1,7 +1,7 @@
 #ifndef _ARRIVE_H
 #define _ARRIVE_H
 
-#include "../../demos/Demo.h"
+#include "../common/Demo.h"
 #include "../../GameWorld.h"
 #include "../common/Entity.h"
 #include "../../util/Vector2.h"

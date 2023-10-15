@@ -1,5 +1,5 @@
 #include "Seek.h"
-#include "../../renderer/Renderer.h"
+#include "../../core/renderer/Renderer.h"
 
 void Seek::CalculateSteering(Vector2 target)
 {

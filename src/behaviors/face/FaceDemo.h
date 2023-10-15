@@ -1,7 +1,7 @@
 #ifndef _FACE_DEMO_H
 #define _FACE_DEMO_H
 
-#include "../../demos/Demo.h"
+#include "../common/Demo.h"
 #include "../../GameWorld.h"
 #include "../common/Entity.h"
 #include "Face.h"

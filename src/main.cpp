@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "GameWorld.h"
-#include "renderer/Renderer.h"
+#include "core/renderer/Renderer.h"
 #include "crosshair/Crosshair.h"
 #include "behaviors/seek/SeekDemo.h"
 #include "behaviors/arrive/ArriveDemo.h"

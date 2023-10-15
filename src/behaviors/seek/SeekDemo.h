@@ -1,7 +1,7 @@
 #ifndef _SEEK_DEMO_H
 #define _SEEK_DEMO_H
 
-#include "../../demos/Demo.h"
+#include "../common/Demo.h"
 #include "../../GameWorld.h"
 #include "../common/Entity.h"
 #include "Seek.h"

@@ -3,7 +3,7 @@
 
 #include "Entity.h"
 #include "SteeringOutput.h"
-#include "../../renderer/Renderer.h"
+#include "../../core/renderer/Renderer.h"
 
 class Steering
 {

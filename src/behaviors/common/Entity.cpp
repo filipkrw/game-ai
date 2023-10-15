@@ -1,7 +1,7 @@
 #include "Entity.h"
 #include "SteeringOutput.h"
 #include "../../util/Vector2.h"
-#include "../../renderer/Renderer.h"
+#include "../../core/renderer/Renderer.h"
 
 Entity::Entity(Vector2 position, double maxSpeed)
 {
