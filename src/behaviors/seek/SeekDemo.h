@@ -1,5 +1,5 @@
-#ifndef _SEEK_DEMO_H
-#define _SEEK_DEMO_H
+#ifndef SEEK_DEMO_H
+#define SEEK_DEMO_H
 
 #include "../common/Demo.h"
 #include "../../game-world/GameWorld.h"
@@ -35,4 +35,4 @@ public:
     };
 };
 
-#endif // _SEEK_DEMO_H
+#endif // SEEK_DEMO_H

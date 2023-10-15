@@ -1,5 +1,5 @@
-#ifndef _FACE_DEMO_H
-#define _FACE_DEMO_H
+#ifndef FACE_DEMO_H
+#define FACE_DEMO_H
 
 #include "../common/Demo.h"
 #include "../../game-world/GameWorld.h"
@@ -49,4 +49,4 @@ public:
     };
 };
 
-#endif // _FACE_DEMO_H
+#endif // FACE_DEMO_H

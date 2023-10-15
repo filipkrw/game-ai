@@ -1,5 +1,5 @@
-#ifndef _FACE_H
-#define _FACE_H
+#ifndef FACE_H
+#define FACE_H
 
 #include "../../game-world/GameWorld.h"
 #include "../common/Entity.h"
@@ -17,4 +17,4 @@ private:
     using Align::CalculateSteering; // Hide the CalculateSteering from Align
 };
 
-#endif // _FACE_H
+#endif // FACE_H

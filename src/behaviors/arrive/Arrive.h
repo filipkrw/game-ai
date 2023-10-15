@@ -1,5 +1,5 @@
-#ifndef _ARRIVE_H
-#define _ARRIVE_H
+#ifndef ARRIVE_H
+#define ARRIVE_H
 
 #include "../common/Demo.h"
 #include "../../game-world/GameWorld.h"
@@ -25,4 +25,4 @@ public:
     void DrawDebug();
 };
 
-#endif // _ARRIVE_H
+#endif // ARRIVE_H

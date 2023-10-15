@@ -1,5 +1,5 @@
-#ifndef _H
-#define _H
+#ifndef ENTITY_H
+#define ENTITY_H
 
 #include <SFML/Graphics.hpp>
 #include "../../util/Vector2.h"
@@ -28,4 +28,4 @@ public:
     void DrawDebug();
 };
 
-#endif // _H
+#endif // ENTITY_H

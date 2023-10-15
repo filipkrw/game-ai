@@ -1,5 +1,5 @@
-#ifndef _ALIGN_DEMO_H
-#define _ALIGN_DEMO_H
+#ifndef ALIGN_DEMO_H
+#define ALIGN_DEMO_H
 
 #include "../common/Demo.h"
 #include "../../game-world/GameWorld.h"
@@ -49,4 +49,4 @@ public:
     };
 };
 
-#endif // _ALIGN_DEMO_H
+#endif // ALIGN_DEMO_H

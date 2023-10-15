@@ -1,5 +1,5 @@
-#ifndef _ARRIVE_DEMO_H
-#define _ARRIVE_DEMO_H
+#ifndef ARRIVE_DEMO_H
+#define ARRIVE_DEMO_H
 
 #include "../common/Demo.h"
 #include "../../game-world/GameWorld.h"
@@ -35,4 +35,4 @@ public:
     };
 };
 
-#endif // _ARRIVE_DEMO_H
+#endif // ARRIVE_DEMO_H
