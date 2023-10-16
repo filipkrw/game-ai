@@ -22,8 +22,8 @@ public:
     void Update(double dt)
     {
         Vector2 crosshairPosition = gameWorld->crosshair->position;
-        seek->GetSteering(crosshairPosition);
-        entity->Update(seek->steering, dt);
+        SteeringOutput steering = seek->GetSteering(crosshairPosition);
+        entity->Update(steering, dt);
     }
 
     void Render()

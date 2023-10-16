@@ -3,18 +3,17 @@
 
 #include "../common/Entity.h"
 #include "../common/SteeringOutput.h"
+#include "../common/Steering.h"
+#include "../look-ahead/LookAhead.h"
 
-class Seek
+class Seek : public LookAhead
 {
 public:
-    Seek(Entity *character, float maxSpeed = 1000.f)
-        : character(character), maxSpeed(maxSpeed) {}
+    Seek(Entity *character, double maxSpeed = 300.f) : LookAhead(character), maxSpeed(maxSpeed){};
 
-    Entity *character;
-    float maxSpeed;
-    SteeringOutput steering;
+    double maxSpeed;
 
-    void GetSteering(Vector2 target);
+    SteeringOutput GetSteering(Vector2 target);
     void DrawDebug();
 };
 
