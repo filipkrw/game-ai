@@ -1,7 +1,7 @@
 #ifndef DEMO_H
 #define DEMO_H
 
-#include "../GameWorld.h"
+#include "../../game-world/GameWorld.h"
 #include <SFML/Graphics.hpp>
 
 class Demo
@@ -17,6 +17,7 @@ public:
     {
         gameWorld->inputManager.ProcessEvent(event);
     };
+
     void BaseUpdate(double dt) { gameWorld->Update(dt); };
     void BaseRender() { gameWorld->Render(); };
 };

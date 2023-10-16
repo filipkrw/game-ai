@@ -1,20 +1,25 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "GameWorld.h"
-#include "Vehicle.h"
-#include "renderer/Renderer.h"
-#include "crosshair/Crosshair.h"
-#include "demos/ArriveDemo.h"
-#include "demos/SeekDemo.h"
-#include "demos/Demo.h"
+
+#include "core/renderer/Renderer.h"
+#include "game-world/GameWorld.h"
+#include "game-world/crosshair/Crosshair.h"
+#include "behaviors/seek/SeekDemo.h"
+#include "behaviors/arrive/ArriveDemo.h"
+#include "behaviors/align/AlignDemo.h"
+#include "behaviors/face/FaceDemo.h"
+#include "behaviors/wander/WanderDemo.h"
 
 int main()
 {
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
     sf::Clock deltaClock;
 
+    // SeekDemo demo = SeekDemo();
     // ArriveDemo demo = ArriveDemo();
-    SeekDemo demo = SeekDemo();
+    // AlignDemo demo = AlignDemo();
+    // FaceDemo demo = FaceDemo();
+    WanderDemo demo = WanderDemo();
 
     while (window->isOpen())
     {
