@@ -8,6 +8,7 @@
 #include "behaviors/arrive/ArriveDemo.h"
 #include "behaviors/align/AlignDemo.h"
 #include "behaviors/face/FaceDemo.h"
+#include "behaviors/wander/WanderDemo.h"
 
 int main()
 {
@@ -18,9 +19,10 @@ int main()
     // SeekDemo demo = SeekDemo();
 
     // SeekDemo demo = SeekDemo();
-    ArriveDemo demo = ArriveDemo();
+    // ArriveDemo demo = ArriveDemo();
     // AlignDemo demo = AlignDemo();
     // FaceDemo demo = FaceDemo();
+    WanderDemo demo = WanderDemo();
 
     while (window->isOpen())
     {
