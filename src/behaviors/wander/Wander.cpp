@@ -2,7 +2,7 @@
 #include "../../util/Util.h"
 #include "../../core/renderer/Renderer.h"
 
-void Wander::CalculateSteering()
+SteeringOutput Wander::GetSteering()
 {
     wanderOrientation += Util::RandomBetween(-1, 1) * wanderRate;
 
@@ -11,7 +11,11 @@ void Wander::CalculateSteering()
     target = character->position + (Vector2::FromAngle(character->orientation) * wanderOffset);
     target += Vector2::FromAngle(targetOrientation) * wanderRadius;
 
-    Face::CalculateSteering(target);
+    SteeringOutput steering = Face::GetSteering(target);
+
+    steering.velocity = Vector2::FromAngle(character->orientation) * maxAcceleration;
+
+    return steering;
 }
 
 void Wander::DrawDebug()

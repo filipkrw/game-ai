@@ -8,7 +8,7 @@ class LookAhead : public Align
 public:
     LookAhead(Entity *character) : Align(character){};
 
-    void CalculateSteering();
+    SteeringOutput GetSteering();
 };
 
 #endif // LOOKAHEAD_H

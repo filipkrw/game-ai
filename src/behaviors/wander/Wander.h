@@ -12,12 +12,12 @@ public:
     Vector2 target = Vector2();
 
     double wanderOffset = 150;
-    double wanderRadius = 10;
+    double wanderRadius = 15;
     double wanderRate = 0.15;
     double wanderOrientation = 0;
     double maxAcceleration = 100;
 
-    void CalculateSteering();
+    SteeringOutput GetSteering();
     void DrawDebug();
 };
 

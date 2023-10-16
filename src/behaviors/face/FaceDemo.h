@@ -33,14 +33,14 @@ public:
     {
         Vector2 crosshairPosition = gameWorld->crosshair->position;
 
-        arrive->CalculateSteering(crosshairPosition);
-        arriveEntity->Update(arrive->steering, dt);
+        SteeringOutput arriveSteering = arrive->GetSteering(crosshairPosition);
+        arriveEntity->Update(arriveSteering, dt);
 
-        lookAhead->CalculateSteering();
-        arriveEntity->Update(lookAhead->steering, dt);
+        SteeringOutput lookAheadSteering = lookAhead->GetSteering();
+        arriveEntity->Update(lookAheadSteering, dt);
 
-        face->CalculateSteering(arriveEntity->position);
-        faceEntity->Update(face->steering, dt);
+        SteeringOutput faceSteering = face->GetSteering(arriveEntity->position);
+        faceEntity->Update(faceSteering, dt);
     }
 
     void Render()

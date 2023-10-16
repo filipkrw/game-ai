@@ -4,10 +4,10 @@
 #include "../common/Demo.h"
 #include "../../game-world/GameWorld.h"
 #include "../common/Entity.h"
-#include "Align.h"
 #include "../arrive/Arrive.h"
-#include <iostream>
 #include "../look-ahead/LookAhead.h"
+#include "Align.h"
+#include <iostream>
 
 class AlignDemo : public Demo
 {
@@ -33,14 +33,14 @@ public:
     void Update(double dt)
     {
         Vector2 crosshairPosition = gameWorld->crosshair->position;
-        arrive->CalculateSteering(crosshairPosition);
-        arriveEntity->Update(arrive->steering, dt);
+        SteeringOutput arriveSteering = arrive->GetSteering(crosshairPosition);
+        arriveEntity->Update(arriveSteering, dt);
 
-        lookAhead->CalculateSteering();
-        arriveEntity->Update(lookAhead->steering, dt);
+        SteeringOutput lookAheadSteering = lookAhead->GetSteering();
+        arriveEntity->Update(lookAheadSteering, dt);
 
-        align->CalculateSteering(arriveEntity->orientation);
-        alignEntity->Update(align->steering, dt);
+        SteeringOutput alignSteering = align->GetSteering(arriveEntity->orientation);
+        alignEntity->Update(alignSteering, dt);
     }
 
     void Render()

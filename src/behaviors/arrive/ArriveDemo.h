@@ -26,11 +26,11 @@ public:
     {
         Vector2 crosshairPosition = gameWorld->crosshair->position;
 
-        arrive->CalculateSteering(crosshairPosition);
-        entity->Update(arrive->steering, dt);
+        SteeringOutput arriveSteering = arrive->GetSteering(crosshairPosition);
+        entity->Update(arriveSteering, dt);
 
-        lookAhead->CalculateSteering();
-        entity->Update(lookAhead->steering, dt);
+        SteeringOutput lookAheadSteering = lookAhead->GetSteering();
+        entity->Update(lookAheadSteering, dt);
     }
 
     void Render()

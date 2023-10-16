@@ -22,11 +22,8 @@ public:
 
     void Update(double dt)
     {
-        wander->CalculateSteering();
-        entity->Update(wander->steering, dt);
-
-        SteeringOutput steering = SteeringOutput();
-        entity->velocity = Vector2::Normalize(Vector2::FromAngle(entity->orientation)) * entity->maxSpeed;
+        SteeringOutput steering = wander->GetSteering();
+        entity->Update(steering, dt);
     }
 
     void Render()

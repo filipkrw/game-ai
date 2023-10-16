@@ -14,7 +14,7 @@ public:
     float maxSpeed;
     SteeringOutput steering;
 
-    void CalculateSteering(Vector2 target);
+    void GetSteering(Vector2 target);
     void DrawDebug();
 };
 

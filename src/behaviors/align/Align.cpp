@@ -8,8 +8,10 @@ double mapToRange(double rotation)
     return rotation - M_PI;
 }
 
-void Align::CalculateSteering(double targetOrientation)
+SteeringOutput Align::GetSteering(double targetOrientation)
 {
+    SteeringOutput steering = SteeringOutput();
+
     double rotation = targetOrientation - character->orientation;
     rotation = mapToRange(rotation);
 
@@ -18,7 +20,7 @@ void Align::CalculateSteering(double targetOrientation)
     if (rotationSize < targetRadius)
     {
         steering.rotation = 0;
-        return;
+        return steering;
     }
 
     double targetRotation;
@@ -44,4 +46,6 @@ void Align::CalculateSteering(double targetOrientation)
         steering.rotation /= angularAcceleration;
         steering.rotation *= maxAngularAcceleration;
     }
+
+    return steering;
 }

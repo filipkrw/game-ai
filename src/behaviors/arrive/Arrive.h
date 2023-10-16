@@ -12,7 +12,6 @@ public:
     Arrive(Entity *character) : character(character){};
 
     Entity *character;
-    SteeringOutput steering;
 
     double maxSpeed = 400.f;
     double maxAcceleration = 300.f;
@@ -21,7 +20,7 @@ public:
     double slowRadius = 200.f;
     double timeToTarget = 0.05f;
 
-    void CalculateSteering(Vector2 target);
+    SteeringOutput GetSteering(Vector2 target);
     void DrawDebug();
 };
 

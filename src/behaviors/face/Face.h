@@ -11,10 +11,10 @@ class Face : public Align
 public:
     Face(Entity *character) : Align(character){};
 
-    void CalculateSteering(Vector2 position);
+    SteeringOutput GetSteering(Vector2 position);
 
 private:
-    using Align::CalculateSteering; // Hide the CalculateSteering from Align
+    using Align::GetSteering; // Hide the GetSteering from Align
 };
 
 #endif // FACE_H

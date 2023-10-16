@@ -1,15 +1,15 @@
 #include "LookAhead.h"
 
-void LookAhead::CalculateSteering()
+SteeringOutput LookAhead::GetSteering()
 {
     Vector2 direction = character->velocity;
 
     if (direction.Length() == 0)
     {
-        return;
+        return SteeringOutput();
     }
 
     double targetOrientation = Vector2::ToAngle(direction);
 
-    Align::CalculateSteering(targetOrientation);
+    return Align::GetSteering(targetOrientation);
 }

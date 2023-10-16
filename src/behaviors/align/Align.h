@@ -16,7 +16,7 @@ public:
 
     double timeToTarget = 0.01;
 
-    void CalculateSteering(double orientation);
+    SteeringOutput GetSteering(double orientation);
 };
 
 #endif // ALIGN_H
