@@ -15,9 +15,6 @@ int main()
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
     sf::Clock deltaClock;
 
-    // ArriveDemo demo = ArriveDemo();
-    // SeekDemo demo = SeekDemo();
-
     // SeekDemo demo = SeekDemo();
     // ArriveDemo demo = ArriveDemo();
     // AlignDemo demo = AlignDemo();

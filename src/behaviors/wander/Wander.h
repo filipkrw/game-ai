@@ -15,7 +15,7 @@ public:
     double wanderRadius = 15;
     double wanderRate = 0.15;
     double wanderOrientation = 0;
-    double maxAcceleration = 100;
+    double maxAcceleration = 500;
 
     SteeringOutput GetSteering();
     void DrawDebug();

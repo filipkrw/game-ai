@@ -16,7 +16,7 @@ private:
 public:
     WanderDemo() : Demo()
     {
-        entity = new Entity(Vector2(450, 300), 50.f);
+        entity = new Entity(Vector2(450, 50), 50.f);
         wander = new Wander(entity);
     };
 
@@ -29,7 +29,7 @@ public:
     void Render()
     {
         entity->Render();
-        wander->DrawDebug();
+        // wander->DrawDebug();
     };
 };
 

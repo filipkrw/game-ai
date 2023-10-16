@@ -8,7 +8,7 @@ SteeringOutput Wander::GetSteering()
 
     double targetOrientation = wanderOrientation + character->orientation;
 
-    target = character->position + (Vector2::FromAngle(character->orientation) * wanderOffset);
+    target = character->position + Vector2::FromAngle(character->orientation) * wanderOffset;
     target += Vector2::FromAngle(targetOrientation) * wanderRadius;
 
     SteeringOutput steering = Face::GetSteering(target);

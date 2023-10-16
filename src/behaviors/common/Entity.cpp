@@ -17,6 +17,13 @@ Entity::Entity(Vector2 position, double maxSpeed)
 void Entity::Update(SteeringOutput steering, double dt)
 {
     velocity += steering.velocity * dt;
+
+    if (velocity.Length() > maxSpeed)
+    {
+        velocity.Normalize();
+        velocity *= maxSpeed;
+    }
+
     position += velocity * dt;
 
     rotation += steering.rotation * dt;
