@@ -16,8 +16,6 @@ public:
 
     double maxSpeed;
 
-    bool lockVelocityToOrientation = false;
-
 public:
     Entity(Vector2 position, double maxSpeed = 100.0f);
 

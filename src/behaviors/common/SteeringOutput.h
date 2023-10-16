@@ -6,8 +6,8 @@
 class SteeringOutput
 {
 public:
-    Vector2 velocity;
-    float rotation;
+    Vector2 velocity = Vector2(0, 0);
+    float rotation = 0;
 };
 
 #endif // STEERINGOUTPUT_H

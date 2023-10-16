@@ -13,6 +13,7 @@ class FaceDemo : public Demo
 private:
     Entity *arriveEntity;
     Arrive *arrive;
+    LookAhead *lookAhead;
 
     Entity *faceEntity;
     Face *face;
@@ -21,8 +22,8 @@ public:
     FaceDemo() : Demo()
     {
         arriveEntity = new Entity(Vector2(600, 500));
-        arriveEntity->lockVelocityToOrientation = true;
         arrive = new Arrive(arriveEntity);
+        lookAhead = new LookAhead(arriveEntity);
 
         faceEntity = new Entity(Vector2(450, 300));
         face = new Face(faceEntity);
@@ -31,10 +32,13 @@ public:
     void Update(double dt)
     {
         Vector2 crosshairPosition = gameWorld->crosshair->position;
+
         arrive->CalculateSteering(crosshairPosition);
         arriveEntity->Update(arrive->steering, dt);
 
-        // std::cout << arriveEntity->orientation << std::endl;
+        lookAhead->CalculateSteering();
+        arriveEntity->Update(lookAhead->steering, dt);
+
         face->CalculateSteering(arriveEntity->position);
         faceEntity->Update(face->steering, dt);
     }

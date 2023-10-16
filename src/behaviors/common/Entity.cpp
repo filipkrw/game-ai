@@ -19,15 +19,8 @@ void Entity::Update(SteeringOutput steering, double dt)
     velocity += steering.velocity * dt;
     position += velocity * dt;
 
-    if (lockVelocityToOrientation)
-    {
-        orientation = NewOrientation(orientation, velocity);
-    }
-    else
-    {
-        rotation += steering.rotation * dt;
-        orientation += rotation * dt;
-    }
+    rotation += steering.rotation * dt;
+    orientation += rotation * dt;
 }
 
 double Entity::NewOrientation(double currentOrientation, Vector2 velocity)
