@@ -38,6 +38,17 @@ public:
         return Vector2(vector.x / vector.Length(), vector.y / vector.Length());
     }
 
+    static Vector2 Truncate(Vector2 vector, double max)
+    {
+        if (vector.LengthSq() > max * max)
+        {
+            vector.Normalize();
+            vector.x *= max;
+            vector.y *= max;
+        }
+        return vector;
+    }
+
     void Truncate(double max)
     {
         if (this->LengthSq() > max * max)

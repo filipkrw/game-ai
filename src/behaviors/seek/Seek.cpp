@@ -5,7 +5,7 @@ SteeringOutput Seek::GetSteering(Vector2 target)
 {
     SteeringOutput steering = SteeringOutput();
 
-    steering.velocity = Vector2::Normalize(target - character->position) * maxSpeed;
+    steering.velocity = Vector2::Normalize(target - character->position) * maxAcceleration;
     steering.rotation = LookAhead::GetSteering().rotation;
 
     return steering;

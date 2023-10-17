@@ -7,11 +7,9 @@
 class FollowPath : public Seek
 {
 public:
-    FollowPath(Entity *character, Path *path) : Seek(character), path(path){};
+    FollowPath(Entity *character, Path *path) : Seek(character, 300.f), path(path){};
 
     Path *path;
-
-    int pathOffset = 0;
     int currentParam = 0;
 
     SteeringOutput GetSteering();

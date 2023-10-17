@@ -19,13 +19,17 @@ private:
 public:
     FollowPathDemo() : Demo()
     {
-        entity = new Entity(Vector2(100, 100), 300.0f);
+        entity = new Entity(Vector2(100, 100), 150.0f);
 
         path = new Path();
 
         for (int i = 0; i < 5; i++)
         {
-            path->AddWaypoint(Vector2(Util::RandomBetween(0, 800), Util::RandomBetween(0, 500)));
+            path->AddWaypoint(Vector2(750, 100));
+            path->AddWaypoint(Vector2(400, 100));
+            path->AddWaypoint(Vector2(200, 300));
+            path->AddWaypoint(Vector2(100, 550));
+            path->AddWaypoint(Vector2(760, 500));
         }
 
         followPath = new FollowPath(entity, path);

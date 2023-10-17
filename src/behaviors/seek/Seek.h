@@ -9,9 +9,9 @@
 class Seek : public LookAhead
 {
 public:
-    Seek(Entity *character, double maxSpeed = 300.f) : LookAhead(character), maxSpeed(maxSpeed){};
+    Seek(Entity *character, double maxAcceleration = 60.f) : LookAhead(character), maxAcceleration(maxAcceleration){};
 
-    double maxSpeed;
+    double maxAcceleration;
 
     SteeringOutput GetSteering(Vector2 target);
     void DrawDebug();
