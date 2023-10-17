@@ -32,11 +32,11 @@ public:
 
         path = new Path();
         path->AddWaypoint(Vector2(100, 100));
-        path->AddWaypoint(Vector2(600, 120));
-        path->AddWaypoint(Vector2(700, 230));
-        path->AddWaypoint(Vector2(1200, 0));
-        path->AddWaypoint(Vector2(900, 650));
-        path->AddWaypoint(Vector2(200, 570));
+        path->AddWaypoint(Vector2(400, 70));
+        path->AddWaypoint(Vector2(600, 200));
+        path->AddWaypoint(Vector2(840, 180));
+        path->AddWaypoint(Vector2(800, 850));
+        path->AddWaypoint(Vector2(200, 770));
 
         vanillaFollowPath = new FollowPath(vanillaEntity, path);
         predictiveFollowPath = new FollowPath(predictiveEntity, path, PREDICTIVE);
