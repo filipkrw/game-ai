@@ -3,7 +3,7 @@
 #include "../../util/Vector2.h"
 #include "../../core/renderer/Renderer.h"
 
-Entity::Entity(Vector2 position, double maxSpeed)
+Entity::Entity(Vector2 position, double maxSpeed, sf::Color color)
 {
     this->position = position;
     this->orientation = 0;
@@ -12,6 +12,8 @@ Entity::Entity(Vector2 position, double maxSpeed)
     this->rotation = 0;
 
     this->maxSpeed = maxSpeed;
+
+    this->color = color;
 }
 
 void Entity::Update(SteeringOutput steering, double dt)
@@ -51,7 +53,7 @@ void Entity::Render()
     triangle.setPoint(1, sf::Vector2f(position.x + side.x * 10, position.y + side.y * 10));
     triangle.setPoint(2, sf::Vector2f(position.x - side.x * 10, position.y - side.y * 10));
     triangle.setFillColor(sf::Color::Transparent);
-    triangle.setOutlineColor(sf::Color::Blue);
+    triangle.setOutlineColor(color);
     triangle.setOutlineThickness(1.f);
 
     sf::RenderWindow *window = Renderer::getInstance()->GetWindow();

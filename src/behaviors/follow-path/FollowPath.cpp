@@ -6,6 +6,10 @@ SteeringOutput FollowPath::GetSteering()
     {
         return FollowPathPredictive();
     }
+    else if (algorithm == SIMPLE)
+    {
+        return FollowPathSimple();
+    }
     return FollowPathVanilla();
 };
 
@@ -25,5 +29,18 @@ SteeringOutput FollowPath::FollowPathPredictive()
     int targetParam = (currentParam + 1) % path->waypoints.size();
 
     Vector2 targetPosition = path->GetPosition(targetParam);
+    return Seek::GetSteering(targetPosition);
+}
+
+SteeringOutput FollowPath::FollowPathSimple()
+{
+    double distance = (character->position - path->GetPosition(currentParam)).Length();
+
+    if (distance < reachedRadius)
+    {
+        currentParam = (currentParam + 1) % path->waypoints.size();
+    }
+
+    Vector2 targetPosition = path->GetPosition(currentParam);
     return Seek::GetSteering(targetPosition);
 }
