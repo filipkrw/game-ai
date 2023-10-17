@@ -63,11 +63,11 @@ public:
     {
         sf::RenderWindow *window = Renderer::getInstance()->GetWindow();
 
-        for (int i = 0; i < waypoints.size(); ++i)
+        for (int i = 0; i < waypoints.size(); i++)
         {
             Vector2 position = waypoints[i];
             sf::CircleShape circle(5);
-            circle.setFillColor(sf::Color::White);
+            circle.setFillColor(sf::Color(30, 30, 30));
             circle.setPosition(position.x - 5, position.y - 5);
             window->draw(circle);
 
@@ -77,6 +77,8 @@ public:
                 sf::Vertex line[] = {
                     sf::Vertex(sf::Vector2f(position.x, position.y)),
                     sf::Vertex(sf::Vector2f(previousPosition.x, previousPosition.y))};
+                line[0].color = sf::Color(30, 30, 30);
+                line[1].color = sf::Color(30, 30, 30);
                 window->draw(line, 2, sf::Lines);
             }
         }

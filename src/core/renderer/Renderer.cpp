@@ -6,7 +6,7 @@ std::mutex Renderer::mtx;
 
 Renderer::Renderer()
 {
-    window = new sf::RenderWindow(sf::VideoMode(900, 600), "Game AI");
+    window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Game AI");
     window->setFramerateLimit(144);
 }
 

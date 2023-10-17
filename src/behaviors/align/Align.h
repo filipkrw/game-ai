@@ -8,11 +8,11 @@ class Align : public Steering
 public:
     Align(Entity *character) : Steering(character){};
 
-    double maxAngularAcceleration = 1000;
-    double maxRotation = 7.5;
+    double maxAngularAcceleration = 3000;
+    double maxRotation = 15;
 
     double targetRadius = 0.02;
-    double slowRadius = 0.8;
+    double slowRadius = 0.4;
 
     double timeToTarget = 0.01;
 

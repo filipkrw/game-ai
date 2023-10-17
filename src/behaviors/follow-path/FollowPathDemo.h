@@ -12,39 +12,44 @@
 class FollowPathDemo : public Demo
 {
 private:
-    Entity *entity;
     Path *path;
-    FollowPath *followPath;
+
+    Entity *vanillaEntity;
+    FollowPath *vanillaFollowPath;
+
+    Entity *predictiveEntity;
+    FollowPath *predictiveFollowPath;
 
 public:
     FollowPathDemo() : Demo()
     {
-        entity = new Entity(Vector2(100, 100), 150.0f);
+        vanillaEntity = new Entity(Vector2(100, 100), 450.0f);
+        predictiveEntity = new Entity(Vector2(100, 100), 450.0f);
 
         path = new Path();
+        path->AddWaypoint(Vector2(100, 100));
+        path->AddWaypoint(Vector2(600, 120));
+        path->AddWaypoint(Vector2(700, 230));
+        path->AddWaypoint(Vector2(1400, 0));
+        path->AddWaypoint(Vector2(900, 800));
+        path->AddWaypoint(Vector2(200, 570));
 
-        for (int i = 0; i < 5; i++)
-        {
-            path->AddWaypoint(Vector2(750, 100));
-            path->AddWaypoint(Vector2(400, 100));
-            path->AddWaypoint(Vector2(200, 300));
-            path->AddWaypoint(Vector2(100, 550));
-            path->AddWaypoint(Vector2(760, 500));
-        }
-
-        followPath = new FollowPath(entity, path);
+        vanillaFollowPath = new FollowPath(vanillaEntity, path);
+        predictiveFollowPath = new FollowPath(predictiveEntity, path);
+        predictiveFollowPath->algorithm = PREDICTIVE;
     };
 
     void Update(double dt)
     {
-        SteeringOutput steering = followPath->GetSteering();
-        entity->Update(steering, dt);
+        vanillaEntity->Update(vanillaFollowPath->GetSteering(), dt);
+        predictiveEntity->Update(predictiveFollowPath->GetSteering(), dt);
     }
 
     void Render()
     {
         path->Render();
-        entity->Render();
+        vanillaEntity->Render();
+        predictiveEntity->Render();
     };
 };
 
