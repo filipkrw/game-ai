@@ -10,6 +10,7 @@
 #include "behaviors/face/FaceDemo.h"
 #include "behaviors/wander/WanderDemo.h"
 #include "behaviors/follow-path/FollowPathDemo.h"
+#include "behaviors/separation/SeparationDemo.h"
 
 int main()
 {
@@ -21,7 +22,8 @@ int main()
     // AlignDemo demo = AlignDemo();
     // FaceDemo demo = FaceDemo();
     // WanderDemo demo = WanderDemo();
-    FollowPathDemo demo = FollowPathDemo();
+    // FollowPathDemo demo = FollowPathDemo();
+    SeparationDemo demo = SeparationDemo();
 
     while (window->isOpen())
     {
