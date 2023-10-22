@@ -11,6 +11,7 @@
 #include "behaviors/wander/WanderDemo.h"
 #include "behaviors/follow-path/FollowPathDemo.h"
 #include "behaviors/separation/SeparationDemo.h"
+#include "behaviors/collision-avoidance/CollisionAvoidanceDemo.h"
 
 int main()
 {
@@ -23,7 +24,8 @@ int main()
     // FaceDemo demo = FaceDemo();
     // WanderDemo demo = WanderDemo();
     // FollowPathDemo demo = FollowPathDemo();
-    SeparationDemo demo = SeparationDemo();
+    // SeparationDemo demo = SeparationDemo();
+    CollisionAvoidanceDemo demo = CollisionAvoidanceDemo();
 
     while (window->isOpen())
     {

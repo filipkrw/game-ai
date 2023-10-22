@@ -20,6 +20,10 @@ public:
 
 public:
     Entity(Vector2 position, double maxSpeed = 100.0f, sf::Color color = sf::Color::Blue);
+    Entity(Vector2 position, Vector2 velocity, double maxSpeed = 100.0f, sf::Color color = sf::Color::Blue) : Entity(position, maxSpeed, color)
+    {
+        this->velocity = velocity;
+    };
 
     void Update(SteeringOutput steering, double dt);
     double NewOrientation(double currentOrientation, Vector2 velocity);

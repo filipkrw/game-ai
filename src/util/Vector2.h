@@ -149,6 +149,11 @@ public:
         return this->x * vector.x + this->y * vector.y;
     }
 
+    static double Dot(Vector2 vector1, Vector2 vector2)
+    {
+        return vector1.x * vector2.x + vector1.y * vector2.y;
+    }
+
     void Zero()
     {
         x = 0;
