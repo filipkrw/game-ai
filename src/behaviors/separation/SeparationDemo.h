@@ -21,20 +21,20 @@ private:
 public:
     SeparationDemo() : Demo()
     {
-        arriveEntity = new Entity(Vector2(200, 200), 600.f, sf::Color::Red);
+        arriveEntity = new Entity(Vector2(100, 100), 6000.f, sf::Color::Red);
         arrive = new Arrive(arriveEntity);
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 100; i++)
         {
-            Entity *entity = new Entity(Vector2(Util::RandomBetween(100, 900), Util::RandomBetween(100, 900)));
+            Entity *entity = new Entity(Vector2(Util::RandomBetween(250, 750), Util::RandomBetween(250, 750)));
             separationEntities.push_back(entity);
 
             Separation *separation = new Separation(entity);
 
-            for (Entity *target : separationEntities)
-            {
-                separation->targets.push_back(target);
-            }
+            // for (Entity *target : separationEntities)
+            // {
+            //     separation->targets.push_back(target);
+            // }
             separation->targets.push_back(arriveEntity);
 
             separations.push_back(separation);

@@ -4,18 +4,19 @@
 #include "../common/Entity.h"
 #include "../common/Steering.h"
 #include "../common/SteeringOutput.h"
+#include "../look-ahead/LookAhead.h"
 
-class Separation : public Steering
+class Separation : LookAhead
 {
 public:
     std::vector<Entity *> targets;
 
-    double maxAcceleration = 200.f;
-    double threshold = 50.f;
+    double maxAcceleration = 20000.f;
+    double threshold = 200.f;
     double decayCoefficient = 1000000.f;
 
 public:
-    Separation(Entity *character) : Steering(character) {}
+    Separation(Entity *character) : LookAhead(character) {}
     SteeringOutput GetSteering();
 };
 

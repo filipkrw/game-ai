@@ -5,13 +5,12 @@
 #include "../../game-world/GameWorld.h"
 #include "../common/Entity.h"
 #include "../../util/Vector2.h"
+#include "../look-ahead/LookAhead.h"
 
-class Arrive
+class Arrive : public LookAhead
 {
 public:
-    Arrive(Entity *character) : character(character){};
-
-    Entity *character;
+    Arrive(Entity *character) : LookAhead(character){};
 
     double maxSpeed = 400.f;
     double maxAcceleration = 300.f;

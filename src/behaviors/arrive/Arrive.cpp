@@ -42,7 +42,7 @@ SteeringOutput Arrive::GetSteering(Vector2 target)
         steering.velocity.Truncate(maxDeceleration);
     }
 
-    steering.rotation = 0;
+    steering.rotation = LookAhead::GetSteering().rotation;
 
     return steering;
 }

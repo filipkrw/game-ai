@@ -19,5 +19,7 @@ SteeringOutput Separation::GetSteering()
         }
     }
 
+    steering.rotation = LookAhead::GetSteering().rotation;
+
     return steering;
 }
