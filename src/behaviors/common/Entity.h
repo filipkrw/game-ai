@@ -2,15 +2,14 @@
 #define ENTITY_H
 
 #include <SFML/Graphics.hpp>
-#include "../../util/Vector2.h"
-#include "SteeringOutput.h"
 
-class Entity
+#include "SteeringOutput.h"
+#include "StaticEntity.h"
+#include "../../util/Vector2.h"
+
+class Entity : public StaticEntity
 {
 public:
-    Vector2 position;
-    double orientation;
-
     Vector2 velocity;
     double rotation;
 
@@ -19,10 +18,18 @@ public:
     sf::Color color;
 
 public:
-    Entity(Vector2 position, double maxSpeed = 100.0f, sf::Color color = sf::Color::Blue);
-    Entity(Vector2 position, Vector2 velocity, double maxSpeed = 100.0f, sf::Color color = sf::Color::Blue) : Entity(position, maxSpeed, color)
+    Entity(Vector2 position, double maxSpeed = 100.0f, sf::Color color = sf::Color::Blue) : StaticEntity(position)
+    {
+        this->maxSpeed = maxSpeed;
+        this->color = color;
+    };
+
+    Entity(Vector2 position, Vector2 velocity, double maxSpeed = 100.0f, sf::Color color = sf::Color::Blue)
+        : StaticEntity(position)
     {
         this->velocity = velocity;
+        this->maxSpeed = maxSpeed;
+        this->color = color;
     };
 
     void Update(SteeringOutput steering, double dt);

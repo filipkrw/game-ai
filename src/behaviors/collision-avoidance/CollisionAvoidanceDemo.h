@@ -36,14 +36,12 @@ public:
         wander = new Wander(wanderEntity);
 
         blendedSteering = new BlendedSteering();
-        blendedSteering->AddArrive(arrive, wanderEntity, 1.56);
+        blendedSteering->AddArrive(arrive, gameWorld->crosshair, 2);
         blendedSteering->AddCollisionAvoidance(collisionAvoidance, 1);
     };
 
     void Update(double dt)
     {
-        // Vector2 crosshairPosition = gameWorld->crosshair->position;
-
         SteeringOutput mainEntitySteering = blendedSteering->GetSteering();
         mainEntity->Update(mainEntitySteering, dt);
 
@@ -55,11 +53,8 @@ public:
     {
         mainEntity->Render();
         wanderEntity->Render();
-        // wander->DrawDebug();
 
         collisionAvoidance->DrawDebug();
-
-        // mainEntity->DrawDebug();
     };
 };
 

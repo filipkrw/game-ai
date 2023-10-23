@@ -3,22 +3,14 @@
 
 #include "../../core/renderer/Renderer.h"
 #include "../../util/Vector2.h"
+#include "../../behaviors/common/StaticEntity.h"
 
-class Crosshair
+class Crosshair : public StaticEntity
 {
 public:
-    Vector2 position;
+    Crosshair() : StaticEntity(Vector2(100, 100)){};
 
-public:
-    Crosshair()
-    {
-        position = Vector2(100, 100);
-    }
-
-    Crosshair(Vector2 position)
-    {
-        this->position = position;
-    }
+    Crosshair(Vector2 position) : StaticEntity(position){};
 
     void Render()
     {

@@ -3,19 +3,6 @@
 #include "../../util/Vector2.h"
 #include "../../core/renderer/Renderer.h"
 
-Entity::Entity(Vector2 position, double maxSpeed, sf::Color color)
-{
-    this->position = position;
-    this->orientation = 0;
-
-    this->velocity = Vector2(0, 0);
-    this->rotation = 0;
-
-    this->maxSpeed = maxSpeed;
-
-    this->color = color;
-}
-
 void Entity::Update(SteeringOutput steering, double dt)
 {
     velocity += steering.velocity * dt;

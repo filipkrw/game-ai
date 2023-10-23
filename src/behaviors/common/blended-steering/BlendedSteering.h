@@ -2,6 +2,7 @@
 #define BLENDED_STEERING_H
 
 #include "../Entity.h"
+#include "../StaticEntity.h"
 #include "../Steering.h"
 #include "../../arrive/Arrive.h"
 #include "../../../util/Vector2.h"
@@ -13,7 +14,7 @@ public:
     struct ArriveBehavior
     {
         Arrive *behavior;
-        Entity *target;
+        StaticEntity *target;
         double weight;
     };
 
@@ -31,7 +32,7 @@ public:
 public:
     BlendedSteering(){};
 
-    void AddArrive(Arrive *arrive, Entity *target, double weight)
+    void AddArrive(Arrive *arrive, StaticEntity *target, double weight)
     {
         arriveBehaviors.push_back({arrive, target, weight});
     }
