@@ -7,14 +7,16 @@
 class CollisionAvoidance : public LookAhead
 {
 public:
-    double maxAcceleration = 20000.f;
-    double radius = 300.f;
+    double maxAcceleration = 500.f;
+    double radius = 100.f;
 
     std::vector<Entity *> targets;
 
 public:
     CollisionAvoidance(Entity *character) : LookAhead(character){};
+
     SteeringOutput GetSteering();
+    void DrawDebug();
 };
 
 #endif // COLLISION_AVODIANCE_H

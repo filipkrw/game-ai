@@ -8,69 +8,58 @@
 #include "../look-ahead/LookAhead.h"
 #include "../arrive/Arrive.h"
 #include "../../util/Util.h"
+#include "../common/blended-steering/BlendedSteering.h"
+#include "../wander/Wander.h"
 
 class CollisionAvoidanceDemo : public Demo
 {
 private:
-    Entity *arriveEntity;
+    Entity *mainEntity;
     Arrive *arrive;
+    CollisionAvoidance *collisionAvoidance;
 
-    std::vector<Entity *> collisionavoidanceEntities;
-    std::vector<CollisionAvoidance *> collisionavoidances;
+    Entity *wanderEntity;
+    Wander *wander;
+
+    BlendedSteering *blendedSteering;
 
 public:
     CollisionAvoidanceDemo() : Demo()
     {
-        arriveEntity = new Entity(Vector2(100, 100), 6000.f, sf::Color::Red);
-        arrive = new Arrive(arriveEntity);
+        mainEntity = new Entity(Vector2(100, 100), 6000.f, sf::Color::Blue);
+        wanderEntity = new Entity(Vector2(500, 500), 100.f, sf::Color::Magenta);
 
-        for (int i = 0; i < 1; i++)
-        {
-            Entity *entity = new Entity(
-                Vector2(Util::RandomBetween(250, 750), Util::RandomBetween(250, 750)),
-                Vector2(Util::RandomBetween(-50, -100), Util::RandomBetween(-50, -100)));
-            collisionavoidanceEntities.push_back(entity);
+        collisionAvoidance = new CollisionAvoidance(mainEntity);
+        collisionAvoidance->targets.push_back(wanderEntity);
 
-            CollisionAvoidance *collisionavoidance = new CollisionAvoidance(entity);
+        arrive = new Arrive(mainEntity);
+        wander = new Wander(wanderEntity);
 
-            // for (Entity *target : collisionavoidanceEntities)
-            // {
-            //     collisionavoidance->targets.push_back(target);
-            // }
-            collisionavoidance->targets.push_back(arriveEntity);
-
-            collisionavoidances.push_back(collisionavoidance);
-        }
+        blendedSteering = new BlendedSteering();
+        blendedSteering->AddArrive(arrive, wanderEntity, 1.56);
+        blendedSteering->AddCollisionAvoidance(collisionAvoidance, 1);
     };
 
     void Update(double dt)
     {
-        Vector2 crosshairPosition = gameWorld->crosshair->position;
+        // Vector2 crosshairPosition = gameWorld->crosshair->position;
 
-        SteeringOutput arriveSteering = arrive->GetSteering(crosshairPosition);
-        arriveEntity->Update(arriveSteering, dt);
+        SteeringOutput mainEntitySteering = blendedSteering->GetSteering();
+        mainEntity->Update(mainEntitySteering, dt);
 
-        for (int i = 0; i < collisionavoidanceEntities.size(); i++)
-        {
-            Entity *entity = collisionavoidanceEntities[i];
-            CollisionAvoidance *collisionavoidance = collisionavoidances[i];
-
-            SteeringOutput collisionavoidanceSteering = collisionavoidance->GetSteering();
-            entity->Update(collisionavoidanceSteering, dt);
-        }
+        SteeringOutput wanderEntitySteering = wander->GetSteering();
+        wanderEntity->Update(wanderEntitySteering, dt);
     }
 
     void Render()
     {
-        arriveEntity->Render();
+        mainEntity->Render();
+        wanderEntity->Render();
+        // wander->DrawDebug();
 
-        for (Entity *entity : collisionavoidanceEntities)
-        {
-            entity->Render();
-            entity->DrawDebug();
-        }
+        collisionAvoidance->DrawDebug();
 
-        arriveEntity->DrawDebug();
+        // mainEntity->DrawDebug();
     };
 };
 

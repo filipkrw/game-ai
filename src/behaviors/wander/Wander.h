@@ -11,7 +11,7 @@ public:
 
     Vector2 target = Vector2();
 
-    double wanderOffset = 150;
+    double wanderOffset = 250;
     double wanderRadius = 15;
     double wanderRate = 0.15;
     double wanderOrientation = 0;
