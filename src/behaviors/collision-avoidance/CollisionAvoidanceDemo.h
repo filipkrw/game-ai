@@ -36,8 +36,8 @@ public:
         wander = new Wander(wanderEntity);
 
         blendedSteering = new BlendedSteering();
-        blendedSteering->AddArrive(arrive, gameWorld->crosshair, 2);
-        blendedSteering->AddCollisionAvoidance(collisionAvoidance, 1);
+        blendedSteering->AddArrive(arrive, gameWorld->crosshair, 1);
+        blendedSteering->AddCollisionAvoidance(collisionAvoidance, 2);
     };
 
     void Update(double dt)

@@ -60,7 +60,7 @@ public:
             totalSteering.rotation += steering.rotation * baw.weight;
         }
 
-        totalSteering.velocity = Vector2::Truncate(totalSteering.velocity, maxAcceleration);
+        // totalSteering.velocity = Vector2::Truncate(totalSteering.velocity, maxAcceleration);
 
         return totalSteering;
     }

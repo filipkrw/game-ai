@@ -6,57 +6,71 @@ SteeringOutput CollisionAvoidance::GetSteering()
 {
     SteeringOutput steering = SteeringOutput();
 
-    double shortestTime = std::numeric_limits<double>::infinity();
+    double timeHorizon = 0.3f;
 
-    Entity *firstTarget = nullptr;
-
-    double firstMinSeparation, firstDistance;
-    Vector2 firstRelativePosition, firstRelativeVelocity;
-
-    for (Entity *target : targets)
+    for (auto *target : targets)
     {
-        Vector2 relativePosition = character->position - target->position;
-        Vector2 relativeVelocity = character->velocity - target->velocity;
-        double relativeSpeed = relativeVelocity.Length();
-        double timeToCollision = Vector2::Dot(relativePosition, relativeVelocity) / (relativeSpeed * relativeSpeed);
+        double timeToCollision = GetTimeToCollision(target);
 
-        double distance = relativePosition.Length();
-        double minSeparation = distance - relativeSpeed * timeToCollision;
-
-        if (minSeparation > 2 * radius)
+        if (timeToCollision > timeHorizon || timeToCollision == 0)
         {
             continue;
         }
 
-        if (timeToCollision > 0 && timeToCollision < shortestTime)
+        Vector2 avoidanceForce = character->position + character->velocity * timeToCollision - target->position - target->velocity * timeToCollision;
+
+        if (avoidanceForce.x != 0 && avoidanceForce.y != 0)
         {
-            shortestTime = timeToCollision;
-            firstTarget = target;
-            firstMinSeparation = minSeparation;
-            firstDistance = distance;
-            firstRelativePosition = relativePosition;
-            firstRelativeVelocity = relativeVelocity;
+            avoidanceForce /= sqrt(avoidanceForce.Dot(avoidanceForce)); // Normalize
         }
+
+        double magnitude = 0;
+
+        if (timeToCollision >= 0 && timeToCollision <= timeHorizon)
+        {
+            magnitude = maxAcceleration * (timeHorizon - timeToCollision) / timeHorizon;
+        }
+
+        avoidanceForce *= magnitude;
+
+        steering.velocity += avoidanceForce;
     }
 
-    if (firstTarget == nullptr)
-    {
-        return steering;
-    }
-
-    if (firstMinSeparation <= 0 || firstDistance < 2 * radius)
-    {
-        firstRelativePosition = character->position - firstTarget->position;
-    }
-    else
-    {
-        firstRelativePosition += firstRelativeVelocity * shortestTime;
-    }
-
-    steering.velocity = Vector2::Normalize(firstRelativePosition) * maxAcceleration;
-    // steering.rotation = LookAhead::GetSteering().rotation;
+    steering.rotation = 0;
 
     return steering;
+}
+
+double CollisionAvoidance::GetTimeToCollision(Entity *target)
+{
+    double r = 20 + 20;
+    Vector2 x = target->position - character->position;
+    double c = x.Dot(x) - r * r;
+
+    // Agents are colliding
+    if (c < 0)
+    {
+        return 0;
+    }
+
+    Vector2 v = character->velocity - target->velocity;
+    double a = v.Dot(v);
+    double b = x.Dot(v);
+    double discr = b * b - a * c;
+
+    if (discr <= 0)
+    {
+        return INFINITY;
+    }
+
+    double tau = (b - sqrt(discr)) / a;
+
+    if (tau < 0)
+    {
+        return INFINITY;
+    }
+
+    return tau;
 }
 
 void CollisionAvoidance::DrawDebug()
