@@ -14,47 +14,72 @@
 class CollisionAvoidanceDemo : public Demo
 {
 private:
-    Entity *mainEntity;
-    Arrive *arrive;
-    CollisionAvoidance *collisionAvoidance;
+    struct Wanderer
+    {
+        Entity *entity;
+        BlendedSteering *steering;
+    };
 
-    Entity *wanderEntity;
-    Wander *wander;
+    Entity *playerEntity;
+
+    // Entity *wanderEntity;
+    // Wander *wander;
 
     BlendedSteering *blendedSteering;
+
+    std::vector<Wanderer> wanderers;
 
 public:
     CollisionAvoidanceDemo() : Demo()
     {
-        mainEntity = new Entity(Vector2(100, 100), 6000.f, sf::Color::Blue);
-        wanderEntity = new Entity(Vector2(500, 500), 100.f, sf::Color::Magenta);
+        // wanderEntity = new Entity(Vector2(500, 500), 100.f, sf::Color::Magenta);
+        // wander = new Wander(wanderEntity);
 
-        collisionAvoidance = new CollisionAvoidance(mainEntity);
-        collisionAvoidance->targets.push_back(wanderEntity);
-
-        arrive = new Arrive(mainEntity);
-        wander = new Wander(wanderEntity);
-
+        playerEntity = new Entity(Vector2(100, 100), 6000.f, sf::Color::Blue);
         blendedSteering = new BlendedSteering();
+
+        Arrive *arrive = new Arrive(playerEntity);
         blendedSteering->AddArrive(arrive, gameWorld->crosshair, 1);
+
+        CollisionAvoidance *collisionAvoidance = new CollisionAvoidance(playerEntity);
         blendedSteering->AddCollisionAvoidance(collisionAvoidance, 2);
+
+        for (int i = 0; i < 50; i++)
+        {
+            Entity *wandererEntity = new Entity(Vector2(Util::RandomBetween(100, 900), Util::RandomBetween(100, 900)), 50.f, sf::Color::Red);
+            Wander *w = new Wander(wandererEntity);
+            BlendedSteering *wandererSteering = new BlendedSteering();
+            wandererSteering->AddWander(w, 1);
+            wanderers.push_back({wandererEntity, wandererSteering});
+
+            collisionAvoidance->targets.push_back(wandererEntity);
+        }
     };
 
     void Update(double dt)
     {
         SteeringOutput mainEntitySteering = blendedSteering->GetSteering();
-        mainEntity->Update(mainEntitySteering, dt);
+        playerEntity->Update(mainEntitySteering, dt);
 
-        SteeringOutput wanderEntitySteering = wander->GetSteering();
-        wanderEntity->Update(wanderEntitySteering, dt);
+        // SteeringOutput wanderEntitySteering = wander->GetSteering();
+        // wanderEntity->Update(wanderEntitySteering, dt);
+
+        for (auto &wanderer : wanderers)
+        {
+            SteeringOutput wandererSteering = wanderer.steering->GetSteering();
+            wanderer.entity->Update(wandererSteering, dt);
+        }
     }
 
     void Render()
     {
-        mainEntity->Render();
-        wanderEntity->Render();
+        playerEntity->Render();
+        // wanderEntity->Render();
 
-        collisionAvoidance->DrawDebug();
+        for (auto &wanderer : wanderers)
+        {
+            wanderer.entity->Render();
+        }
     };
 };
 

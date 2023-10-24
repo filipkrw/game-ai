@@ -5,8 +5,9 @@
 #include "../StaticEntity.h"
 #include "../Steering.h"
 #include "../../arrive/Arrive.h"
-#include "../../../util/Vector2.h"
 #include "../../collision-avoidance/CollisionAvoidance.h"
+#include "../../wander/Wander.h"
+#include "../../../util/Vector2.h"
 
 class BlendedSteering
 {
@@ -18,6 +19,12 @@ public:
         double weight;
     };
 
+    struct WanderBehavior
+    {
+        Wander *behavior;
+        double weight;
+    };
+
     struct CollisionAvoidanceBehavior
     {
         CollisionAvoidance *behavior;
@@ -25,6 +32,7 @@ public:
     };
 
     std::vector<ArriveBehavior> arriveBehaviors;
+    std::vector<WanderBehavior> wanderBehaviors;
     std::vector<CollisionAvoidanceBehavior> collisionAvoidanceBehaviors;
 
     float maxAcceleration;
@@ -35,6 +43,11 @@ public:
     void AddArrive(Arrive *arrive, StaticEntity *target, double weight)
     {
         arriveBehaviors.push_back({arrive, target, weight});
+    }
+
+    void AddWander(Wander *wander, double weight)
+    {
+        wanderBehaviors.push_back({wander, weight});
     }
 
     void AddCollisionAvoidance(CollisionAvoidance *collisionAvoidance, double weight)
@@ -49,6 +62,13 @@ public:
         for (auto &baw : arriveBehaviors)
         {
             SteeringOutput steering = baw.behavior->GetSteering(baw.target->position);
+            totalSteering.velocity += steering.velocity * baw.weight;
+            totalSteering.rotation += steering.rotation * baw.weight;
+        }
+
+        for (auto &baw : wanderBehaviors)
+        {
+            SteeringOutput steering = baw.behavior->GetSteering();
             totalSteering.velocity += steering.velocity * baw.weight;
             totalSteering.rotation += steering.rotation * baw.weight;
         }
