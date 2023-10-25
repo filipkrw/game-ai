@@ -44,7 +44,7 @@ public:
         CollisionAvoidance *collisionAvoidance = new CollisionAvoidance(playerEntity);
         blendedSteering->AddCollisionAvoidance(collisionAvoidance, 2);
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 100; i++)
         {
             Entity *wandererEntity = new Entity(Vector2(Util::RandomBetween(100, 900), Util::RandomBetween(100, 900)), 50.f, sf::Color::Red);
             Wander *w = new Wander(wandererEntity);

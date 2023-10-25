@@ -8,7 +8,7 @@
 class CollisionAvoidance : public LookAhead
 {
 public:
-    double maxAcceleration = 500.f;
+    double maxAcceleration = 3000.f;
     double radius = 100.f;
 
     std::vector<Entity *> targets;

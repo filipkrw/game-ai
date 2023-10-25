@@ -43,7 +43,7 @@ SteeringOutput CollisionAvoidance::GetSteering()
 
 double CollisionAvoidance::GetTimeToCollision(Entity *target)
 {
-    double r = 20 + 20;
+    double r = 15 + 15;
     Vector2 x = target->position - character->position;
     double c = x.Dot(x) - r * r;
 
