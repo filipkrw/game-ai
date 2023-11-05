@@ -22,9 +22,6 @@ private:
 
     Entity *playerEntity;
 
-    // Entity *wanderEntity;
-    // Wander *wander;
-
     BlendedSteering *blendedSteering;
 
     std::vector<Wanderer> wanderers;
@@ -32,10 +29,7 @@ private:
 public:
     CollisionAvoidanceDemo() : Demo()
     {
-        // wanderEntity = new Entity(Vector2(500, 500), 100.f, sf::Color::Magenta);
-        // wander = new Wander(wanderEntity);
-
-        playerEntity = new Entity(Vector2(100, 100), 6000.f, sf::Color::Blue);
+        playerEntity = new Entity(Vector2(5, 5), 60000.f, sf::Color::Blue);
         blendedSteering = new BlendedSteering();
 
         Arrive *arrive = new Arrive(playerEntity);
@@ -44,7 +38,9 @@ public:
         CollisionAvoidance *collisionAvoidance = new CollisionAvoidance(playerEntity);
         blendedSteering->AddCollisionAvoidance(collisionAvoidance, 2);
 
-        for (int i = 0; i < 100; i++)
+        int numWanderers = 100;
+
+        for (int i = 0; i < numWanderers; i++)
         {
             Entity *wandererEntity = new Entity(Vector2(Util::RandomBetween(100, 900), Util::RandomBetween(100, 900)), 50.f, sf::Color::Red);
             Wander *w = new Wander(wandererEntity);
@@ -54,15 +50,27 @@ public:
 
             collisionAvoidance->targets.push_back(wandererEntity);
         }
+
+        for (int i = 0; i < numWanderers; i++)
+        {
+            CollisionAvoidance *ca = new CollisionAvoidance(wanderers[i].entity);
+
+            for (int j = 0; j < numWanderers; j++)
+            {
+                if (i == j)
+                    continue;
+                ca->targets.push_back(wanderers[j].entity);
+            }
+
+            ca->targets.push_back(playerEntity);
+            wanderers[i].steering->AddCollisionAvoidance(ca, 2);
+        }
     };
 
     void Update(double dt)
     {
         SteeringOutput mainEntitySteering = blendedSteering->GetSteering();
         playerEntity->Update(mainEntitySteering, dt);
-
-        // SteeringOutput wanderEntitySteering = wander->GetSteering();
-        // wanderEntity->Update(wanderEntitySteering, dt);
 
         for (auto &wanderer : wanderers)
         {
@@ -74,7 +82,6 @@ public:
     void Render()
     {
         playerEntity->Render();
-        // wanderEntity->Render();
 
         for (auto &wanderer : wanderers)
         {

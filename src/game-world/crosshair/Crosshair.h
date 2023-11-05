@@ -8,7 +8,7 @@
 class Crosshair : public StaticEntity
 {
 public:
-    Crosshair() : StaticEntity(Vector2(100, 100)){};
+    Crosshair() : StaticEntity(Vector2(5, 5)){};
 
     Crosshair(Vector2 position) : StaticEntity(position){};
 

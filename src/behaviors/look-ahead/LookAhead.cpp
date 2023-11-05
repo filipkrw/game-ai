@@ -4,7 +4,7 @@ SteeringOutput LookAhead::GetSteering()
 {
     Vector2 direction = character->velocity;
 
-    if (direction.Length() == 0)
+    if (direction.Length() < 0.001)
     {
         return SteeringOutput();
     }
