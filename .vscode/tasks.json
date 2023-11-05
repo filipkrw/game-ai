@@ -3,49 +3,80 @@
   "tasks": [
     {
       "type": "shell",
-      "label": "C++ - Debug Single File",
-      "command": "/usr/bin/clang++",
+      "label": "Build",
+      "command": "cmake",
       "args": [
-        "-std=c++17",
-        "-stdlib=libc++",
-        "-g",
-        "-Wall",
-        "${file}",
-        "-o",
-        "${fileDirname}/out/${fileBasenameNoExtension}.out",
-        "-lsfml-graphics",
-        "-lsfml-window",
-        "-lsfml-system"
+        "-S",
+        "${workspaceFolder}",
+        "-B",
+        "${workspaceFolder}/out/build"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": ["$gcc"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "dependsOn": ["Create out directory"]
+      "group": "build"
     },
     {
       "type": "shell",
-      "label": "C++ - Debug Multi File",
-      "command": "/usr/bin/clang++ -std=c++17 -stdlib=libc++ -g -Wall ${workspaceFolder}/src/**/*.cpp -o ${workspaceFolder}/out/a.out -lsfml-graphics -lsfml-window -lsfml-system",
+      "label": "Make",
+      "command": "make",
+      "args": ["-C", "${workspaceFolder}/out/build"],
       "options": {
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": ["$gcc"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "dependsOn": ["Create out directory"]
+      "dependsOn": ["Build"],
+      "group": "build"
     },
     {
       "type": "shell",
-      "label": "Create out directory",
-      "command": "mkdir",
-      "args": ["-p", "${workspaceFolder}/out"]
+      "label": "Run",
+      "command": "${workspaceFolder}/out/build/GameAI",
+      "args": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": [],
+      "dependsOn": ["Make"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "Build (Debug)",
+      "command": "cmake",
+      "args": [
+        "-S",
+        "${workspaceFolder}",
+        "-B",
+        "${workspaceFolder}/out/build",
+        "-DCMAKE_BUILD_TYPE=Debug"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "label": "Make (Debug)",
+      "command": "cmake",
+      "args": ["--build", "${workspaceFolder}/out/build"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"],
+      "dependsOn": ["Build (Debug)"],
+      "group": "build"
     }
   ]
 }
